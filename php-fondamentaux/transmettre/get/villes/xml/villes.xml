@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <ville>
+    <id>0</id>
+    <nom>Paris</nom>
+    <photo>paris</photo>
+    <pays>France</pays>
+  </ville>
+  <ville>
+    <id>1</id>
+    <nom>Mexico</nom>
+    <photo>mexico</photo>
+    <pays>Mexique</pays>
+  </ville>
+  <ville>
+    <id>2</id>
+    <nom>Tours</nom>
+    <photo>tours</photo>
+    <pays>France</pays>
+  </ville>
+  <ville>
+    <id>3</id>
+    <nom>Québec</nom>
+    <photo>quebec</photo>
+    <pays>Canada</pays>
+  </ville>
+  <ville>
+    <id>4</id>
+    <nom>La Rochelle</nom>
+    <photo>larochelle</photo>
+    <pays>France</pays>
+  </ville>
+</root>

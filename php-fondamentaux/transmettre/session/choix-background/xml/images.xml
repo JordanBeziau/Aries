@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <image>
+    <id>0</id>
+    <nom>Background n°18</nom>
+    <source>background-18</source>
+  </image>
+  <image>
+    <id>1</id>
+    <nom>Background coloré</nom>
+    <source>background-colore</source>
+  </image>
+  <image>
+    <id>2</id>
+    <nom>Background n°26</nom>
+    <source>background-wallpapers-26</source>
+  </image>
+  <image>
+    <id>3</id>
+    <nom>Background cool</nom>
+    <source>cool-background</source>
+  </image>
+  <image>
+    <id>4</id>
+    <nom>Dégradé de triangles</nom>
+    <source>degrade-triangles</source>
+  </image>
+  <image>
+    <id>5</id>
+    <nom>Low Poly</nom>
+    <source>low-polies</source>
+  </image>
+</root>

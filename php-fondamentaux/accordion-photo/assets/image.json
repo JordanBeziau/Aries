@@ -1,0 +1,19 @@
+{
+  "images" : [
+    {
+      "titre" : "Chouette",
+      "source" : "chouette.jpg",
+      "legende" : "Une chouette avec de grands yeux !"
+    },
+    {
+      "titre" : "Fjord",
+      "source" : "fjords.jpg",
+      "legende" : "Venez demain, quatre heures, nous marchions d'une manière dépouillée, des idées nouvelles. Système paternel qui lui réussit."
+    },
+    {
+      "titre" : "Elephant",
+      "source" : "elephant.jpg",
+      "legende" : "This average-sized adult cat is male.  He has a short white coat with a large cream tabby point spot on his back.  He has a medium-length, broad face and is a bit pudgy.  He is a picky eater, is very lazy, and is cautious around strangers."
+    }
+  ]
+}

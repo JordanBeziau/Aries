@@ -1,0 +1,53 @@
+* {box-sizing: border-box;}
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+}
+dl {
+  width: 400px;
+  margin: 0 auto;
+}
+dd {
+  margin: 0;
+  overflow: hidden;
+  height: 548px;
+  transition: height 600ms;
+}
+dd:not(.open) {
+  height: 0px;
+}
+.clickable {
+  cursor: pointer;
+}
+dt.clickable:hover {
+  background: #00fabb;
+}
+dt {
+  background: #00e6ac;
+  transition: all 0.2s;
+}
+dt h3 {
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  background: transparent;
+  color: #008060;
+  font-size: 1.5rem;
+}
+dl figure {
+  margin: 0;
+  height: 400px;
+}
+dl img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+dl figcaption {
+  padding: 20px;
+  background: #ffe066;
+  color: #cc8800;
+  min-height: 148px;
+  font-size: 1.2rem;
+}

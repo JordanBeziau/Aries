@@ -1,0 +1,20 @@
+{
+  "livres" : [
+    {
+      "ean" : "9782212674088",
+      "titre" : "Javascript pour les webdesigners",
+      "prenom" : "Mat",
+      "nom" : "Marquis",
+      "prix" : "15,00",
+      "detail" : "L'auteur, un Webdesigner chevronné, vous initiera à coder en toute confiance pour rendre vos pages web attractives. Un tour d'horizon du langage pour en exploiter les possibilités et offrir aux visiteurs de votre site une bonne expérience."
+    },
+    {
+      "ean" : "9782212673616",
+      "titre" : "Responsive web design",
+      "prenom" : "Ethan",
+      "nom" : "Marcotte",
+      "prix" : "12,00",
+      "detail" : "Découvrez le responsive web design et apprenez à concevoir des sites qui anticipent et répondent aux besoins de vos utilisateurs. Dans cette seconde édition de son ouvrage phare, Ethan Marcotte décrit les principes qui sous-tendent le responsive design - grilles fluides, images flexibles et media queries - et démontre comment proposer une expérience de qualité, quelle que soit la taille de l'écran."
+    }
+  ]
+}
