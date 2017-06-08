@@ -1,0 +1,18 @@
+On aura :
+  des rédacteurs qui écrivent des articles
+  des membres postent des commentaires
+  un administrateur qui gère :
+    les membres
+    les actions sur des articles et commentaires
+
+  un espace d’administration avec authentification
+    un membre profil rédacteur -> création, modification, suppression se des articles
+                              -> poster des commentaires
+
+  une page publique
+    liste des articles (tri, pagination, détails d’un article et ses commentaires)
+
+Thèmes à retenir pour la modélisation de la base de donnée
+  Articles
+  Commentaire
+  Membre
