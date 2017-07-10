@@ -14,6 +14,12 @@ class Etudiant extends Personne {
 
   # attributs
   private $filiere;
+  private $utile;
+
+  function __construct($_prenom, $_nom, Utile $_utile) {
+    parent::__construct($_prenom, $_nom);
+    $this -> utile = $_utile;
+  }
 
   # getter / setter
   public function setFiliere($_filiere) {
@@ -26,6 +32,20 @@ class Etudiant extends Personne {
 
   public function getType() {
     return self::TYPE;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getUtile() {
+    return $this -> utile -> read("$this->nom.txt");
+  }
+
+  /**
+   * @param mixed $utile
+   */
+  public function setUtile() {
+    $this -> utile -> write("$this->nom.txt", uniqid());
   }
 
   # Override parent method

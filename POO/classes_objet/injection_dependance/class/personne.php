@@ -9,8 +9,8 @@
 class Personne {
 
   # attributs
-  private $nom;
-  private $prenom;
+  protected $nom;
+  protected $prenom;
 
   # constructeur
   function __construct($_prenom, $_nom) {
