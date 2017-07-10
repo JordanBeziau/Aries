@@ -17,6 +17,7 @@ class DB {
     try {
       self::$pdo = new PDO("mysql:host=".Auth::getHost().";port=8889;dbname=".Auth::getDb(), Auth::getUsername(), Auth::getPassword());
       self::$pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      self::$pdo -> exec("SET CHARACTER SET utf8");
     }
     catch (PDOException $e) {
       print "Erreur : " . $e -> getMessage() . "<br>";
