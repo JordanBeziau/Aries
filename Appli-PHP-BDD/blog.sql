@@ -30,4 +30,4 @@
     JOIN Membre AS MC ON C.Membre_id = MC.id
     JOIN Article AS A ON C.Article_id = A.id
     JOIN Membre AS MA ON A.Membre_id = MA.id
-                         AND MC.id = 2
+  WHERE MC.id = 2
