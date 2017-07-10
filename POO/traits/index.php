@@ -7,5 +7,12 @@
  */
 
 require "Convert.php";
-require "Manage.php";
 require "Utile.php";
+require "Manage.php";
+
+$m = new Manage();
+echo $m -> change();
+echo "<hr>";
+$m->reset();
+echo "</hr>";
+echo $m->titre($m->data);

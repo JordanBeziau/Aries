@@ -6,6 +6,11 @@
  * Date: 10/07/2017
  * Time: 16:00
  */
-class Convert {
+
+trait Convert {
+
+  public function titre($_data) {
+    return "<h3>$_data</h3>";
+  }
 
 }
