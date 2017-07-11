@@ -1,0 +1,15 @@
+{
+    "name": "first-project/dep",
+    "description": "Premier projet avec Composer",
+    "authors": [
+        {
+            "name": "JordanBeziau",
+            "email": "jordanbeziau@gmail.com"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "require": {
+        "mpdf/mpdf": "^7.0@beta",
+        "fzaninotto/faker": "^1.6"
+    }
+}
