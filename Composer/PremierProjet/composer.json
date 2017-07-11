@@ -11,5 +11,10 @@
     "require": {
         "mpdf/mpdf": "^7.0@beta",
         "fzaninotto/faker": "^1.6"
+    },
+    "autoload": {
+        "files": [
+            "lib/helpers/debug.php"
+        ]
     }
 }
