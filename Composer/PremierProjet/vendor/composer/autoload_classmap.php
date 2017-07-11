@@ -11,6 +11,8 @@ return array(
     'FilterASCII85' => $vendorDir . '/setasign/fpdi/filters/FilterASCII85.php',
     'FilterASCIIHexDecode' => $vendorDir . '/setasign/fpdi/filters/FilterASCIIHexDecode.php',
     'FilterLZW' => $vendorDir . '/setasign/fpdi/filters/FilterLZW.php',
+    'Foo' => $baseDir . '/lib/class/Foo.php',
+    'Utile' => $baseDir . '/lib/class/Utile.php',
     'fpdi_pdf_parser' => $vendorDir . '/setasign/fpdi/fpdi_pdf_parser.php',
     'pdf_context' => $vendorDir . '/setasign/fpdi/pdf_context.php',
 );

@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     '5255c38a0faeba867671b61dfda6d864' => $vendorDir . '/paragonie/random_compat/lib/random.php',
     'db356362850385d08a5381de2638b5fd' => $vendorDir . '/mpdf/mpdf/src/functions.php',
+    'ad8ab2f48422da1458b14f0eeb43a058' => $baseDir . '/lib/helpers/debug.php',
 );

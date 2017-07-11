@@ -15,6 +15,9 @@
     "autoload": {
         "files": [
             "lib/helpers/debug.php"
-        ]
+        ],
+      "classmap": [
+        "lib/class"
+      ]
     }
 }

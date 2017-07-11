@@ -9,6 +9,7 @@ class ComposerStaticInit7a3268dfbb57099a339f8a7739a0e6bb
     public static $files = array (
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         'db356362850385d08a5381de2638b5fd' => __DIR__ . '/..' . '/mpdf/mpdf/src/functions.php',
+        'ad8ab2f48422da1458b14f0eeb43a058' => __DIR__ . '/../..' . '/lib/helpers/debug.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -47,6 +48,8 @@ class ComposerStaticInit7a3268dfbb57099a339f8a7739a0e6bb
         'FilterASCII85' => __DIR__ . '/..' . '/setasign/fpdi/filters/FilterASCII85.php',
         'FilterASCIIHexDecode' => __DIR__ . '/..' . '/setasign/fpdi/filters/FilterASCIIHexDecode.php',
         'FilterLZW' => __DIR__ . '/..' . '/setasign/fpdi/filters/FilterLZW.php',
+        'Foo' => __DIR__ . '/../..' . '/lib/class/Foo.php',
+        'Utile' => __DIR__ . '/../..' . '/lib/class/Utile.php',
         'fpdi_pdf_parser' => __DIR__ . '/..' . '/setasign/fpdi/fpdi_pdf_parser.php',
         'pdf_context' => __DIR__ . '/..' . '/setasign/fpdi/pdf_context.php',
     );

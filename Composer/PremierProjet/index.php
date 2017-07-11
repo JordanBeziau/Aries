@@ -11,6 +11,11 @@ require "vendor/autoload.php";
 $faker = Faker\Factory::create("fr_FR");
 
 $person = $faker->address;
+
+$u = new Utile();
+$u->save($person, "saveperson.txt");
+
+/*
 $mpdf = new \Mpdf\Mpdf();
 $mpdf->WriteHTML('<h1>'.$person.'</h1>');
 $mpdf->Output();
