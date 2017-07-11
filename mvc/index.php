@@ -15,6 +15,8 @@ define("CSS", BASE_URL."assets/css/");
 define("IMG", BASE_URL."assets/img/");
 
 # REQUIRE
-require CORE."helpers/debug.php";
+require CORE . "helpers/debug.php";
+require CORE . "Router.php";
 
 # ROUTER
+Router::run();

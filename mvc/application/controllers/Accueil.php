@@ -19,8 +19,8 @@ class Accueil {
    * Affiche numéro
    * @param $_num
    */
-  public function affiche($_num) {
-
+  public function affiche($_num = null) {
+    echo "Méthode affiche $_num";
   }
 
 }
