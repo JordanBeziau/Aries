@@ -12,6 +12,11 @@ class Contact extends Controller {
    * méthode par défaut
    */
   public function index() {
+    require BASE_APP."models/ContactModel.php";
+
+    $contacts = new ContactModel();
+    vd($contacts->all());
+
     $this->data = [
       "titre" => "Contact"
     ];

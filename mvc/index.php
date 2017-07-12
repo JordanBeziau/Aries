@@ -16,8 +16,11 @@ define("IMG", BASE_URL."assets/img/");
 
 # REQUIRE
 require CORE . "helpers/debug.php";
-require CORE . "Router.php";
 require CORE . "Controller.php";
+require CORE . "auth/Auth.php";
+require CORE . "DB.php";
+require CORE . "Model.php";
+require CORE . "Router.php";
 
 # ROUTER
 Router::run();
