@@ -3,19 +3,19 @@
 /**
  * Created by PhpStorm.
  * User: jordanbeziau
- * Date: 11/07/2017
- * Time: 14:44
+ * Date: 12/07/2017
+ * Time: 09:38
  */
-class Accueil extends Controller {
+class Contact extends Controller {
 
   /**
    * méthode par défaut
    */
   public function index() {
     $this->data = [
-      "titre" => "Accueil"
+      "titre" => "Contact"
     ];
-    $this->view("public", "accueil_view", $this->data);
+    $this->view("public", "contact_view", $this->data);
   }
 
 }

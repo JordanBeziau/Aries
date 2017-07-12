@@ -1,5 +1,7 @@
 * {box-sizing: border-box}
 
+body { margin: 0; }
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -14,8 +16,11 @@
 
 .navbar ul {
     display: flex;
+    list-style: none;
 }
 
 .navbar a {
     color: white;
+    text-decoration: none;
+    padding: 1rem;
 }
