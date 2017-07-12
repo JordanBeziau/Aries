@@ -31,7 +31,7 @@ class Router {
 
     } else {
       require BASE_APP."controllers/erreur.php";
-      $controller = new controller\Erreur();
+      $controller = new \controller\Erreur();
       $controller->index();
       exit;
     }
