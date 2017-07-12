@@ -9,7 +9,8 @@
 class ContactModel extends Model {
 
   public function all() {
-    return "Contact datas";
+     $query = $this->pdo->query("SELECT * FROM contact");
+     return $query->fetchAll(PDO::FETCH_OBJ);
   }
 
 }

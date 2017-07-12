@@ -15,10 +15,10 @@ class Contact extends Controller {
     require BASE_APP."models/ContactModel.php";
 
     $contacts = new ContactModel();
-    vd($contacts->all());
 
     $this->data = [
-      "titre" => "Contact"
+      "titre" => "Contact",
+      "contacts" => $contacts->all()
     ];
     $this->view("public", "contact_view", $this->data);
   }

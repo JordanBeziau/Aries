@@ -8,3 +8,12 @@
 ?>
 
 <h1><?php echo $titre; ?></h1>
+
+<hr>
+
+<ul class="contact-list">
+  <h3>Liste des contacts</h3>
+  <?php foreach ($contacts as $contact) : ?>
+    <li>Pseudo : <?php echo $contact->pseudo ?>, Mail : <?php echo $contact->email ?></li>
+  <?php endforeach; ?>
+</ul>

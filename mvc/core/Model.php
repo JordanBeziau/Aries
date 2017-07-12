@@ -8,10 +8,10 @@
  */
 class Model {
 
-  public $db;
+  public $pdo;
 
   function __construct() {
-    $this->db = DB::init();
+    $this->pdo = DB::init();
   }
 
 }
