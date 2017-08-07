@@ -1,6 +1,6 @@
 <?php
 	namespace app;
-	use app\Admin as Admin;
+	//use app\Admin as Admin;
 	use \core\Controller;
 
 	class Admin extends Controller {

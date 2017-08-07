@@ -18,7 +18,7 @@ class Router {
 		#.1
 
 		if(empty($_GET['url'])){
-			require BASE_APP."controllers/accueil.php";
+			require BASE_APP . "controllers/Accueil.php";
 			$controller =  new \app\Accueil();
 			$controller->index();
 			exit;

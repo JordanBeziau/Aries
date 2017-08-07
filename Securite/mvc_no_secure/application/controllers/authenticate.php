@@ -1,6 +1,6 @@
 <?php
 	namespace app;
-	use app\Authenticate as Authenticate;
+	//use app\Authenticate as Authenticate;
 	use \core\Controller;
 
 	class Authenticate extends Controller {
