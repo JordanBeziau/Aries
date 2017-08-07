@@ -6,19 +6,24 @@
 	class Admin extends Controller {
         
         
-        private $articles;
+    private $modelArticle;
 
 		public function __construct(){
- 
-        }
+      require BASE_APP . "/models/Article.php";
+      $this->modelArticle = new md\Article();
+		}
 
 		/**
-		 * [[Description]]
+		 * Charger la vue admin avec les articles des membres connectés
 		 */
-		public function index(){
-            
-
-		}
+    public function index(){
+      $id = $_SESSION["auth"]["id"];
+      $this->data = [
+        "titre" => "Accueil Admin",
+        "articles" => $this->modelArticle->allBy($id)
+      ];
+      $this -> view("admin", "index_view", $this->data);
+    }
         
         /**
         * [[Description]]

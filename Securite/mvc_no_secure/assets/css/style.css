@@ -11,3 +11,9 @@ ul  {
 textarea {
     height: 200px!important;
 }
+
+.form-signin label:last-of-type, .form-signin button {
+  margin-top: 15px;
+}
+
+.meta-data { color: lightseagreen; }

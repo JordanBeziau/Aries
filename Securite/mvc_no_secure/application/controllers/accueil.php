@@ -17,13 +17,11 @@
 		}
 
     public function index(){
-
 		  $this->data = [
 		    "titre" => "Accueil",
         "articles" => $this->modelArticle->all()
       ];
 		  $this -> view("public", "accueil_view", $this->data);
-
 		}
 
 

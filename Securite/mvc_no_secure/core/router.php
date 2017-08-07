@@ -36,7 +36,7 @@ class Router {
 			$controllerName = '\app\\'.ucfirst($controllerName);
 			$controller =  new $controllerName();
 		}else{
-			require BASE_APP."controllers/error.php";
+			require BASE_APP . "controllers/Error.php";
 			$controller =  new \app\Error();
 			$controller->index();
 			exit;

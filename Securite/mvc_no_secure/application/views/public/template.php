@@ -26,9 +26,9 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
                 <ul class="nav navbar-nav">
-                    <li><a href="<?php ?>">Accueil</a></li>
+                    <li><a href="<?php echo BASE_URL ?>/accueil">Accueil</a></li>
                     <li><a href="<?php ?>">Contact</a></li>
-                    <li><a href="<?php ?>">Users</a></li>
+                    <li><a href="<?php echo BASE_URL ?>/authenticate">Users</a></li>
                 </ul>
             </div>
         </div>

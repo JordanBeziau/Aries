@@ -4,7 +4,7 @@
         
         <h3><?php echo $article->titre ?></h3>
         <p><?php echo $article->contenu ?>
-        <br><em style="color:#061e6f">Par <?php echo $article->pseudo ?> | <?php echo $article->createdAt ?></em>
+        <br><em class="meta-data">Par <?php echo $article->pseudo ?> | <?php echo $article->createdAt ?></em>
         </p>
         
         <?php endforeach; ?>
