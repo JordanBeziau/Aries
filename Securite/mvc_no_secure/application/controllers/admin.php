@@ -25,23 +25,39 @@
       $this -> view("admin", "index_view", $this->data);
     }
         
-        /**
-        * [[Description]]
-        */
-        
-        public function create(){
+    /**
+    * [[Description]]
+    */
 
-        }
+    public function create(){
+      if (empty($_POST)) {
+        $this->data = [
+          "titre" => "Admin | create"
+        ];
+        $this->view("admin", "create_view", $this->data);
+      } else {
+        $this->modelArticle->insert();
+        header("location:".BASE_URL."/admin");
+      }
+    }
         
         /**
-        * @param [[Type]] [[Description]]
+        * @param int $id de l'article
         */
         
         public function edit($id){
-
-
+          if (empty($_POST)) {
+            $this->data = [
+              "titre" => "Admin | edit",
+              "article" => $this->modelArticle->single($id)
+            ];
+            $this->view("admin", "edit_view", $this->data);
+          } else {
+            $this->modelArticle->update();
+            header("location:".BASE_URL."/admin/edit/$id");
+          }
         }
-  
+
         /**
         * @param [[Type]] [[Description]]
         */

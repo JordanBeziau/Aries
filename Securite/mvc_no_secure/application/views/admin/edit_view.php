@@ -2,16 +2,16 @@
    
    <div class="col-sm-8 col-sm-offset-2">
        
-        <form class="form-create" method="post" action="<?php  ?>">
+        <form class="form-create" method="post" action="<?php echo BASE_URL ?>/admin/update">
 
               <div class="form-group">
                 <label for="titre">Titre</label>
-                <input type="text" class="form-control" name="titre" placeholder="titre" value="<?php  ?>">
+                <input type="text" class="form-control" name="titre" placeholder="titre" value="<?php echo $article->titre; ?>">
               </div>
 
               <div class="form-group">
                 <label for="contenu">Contenu</label>
-                <textarea name="contenu" class="form-control"><?php  ?></textarea>
+                <textarea name="contenu" class="form-control"><?php echo $article->contenu; ?></textarea>
               </div>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">validation</button>
