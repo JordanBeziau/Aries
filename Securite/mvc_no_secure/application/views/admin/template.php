@@ -22,8 +22,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
                 <ul class="nav navbar-nav">
                     <li><?php ?></li>
-                    <li><a href="<?php ?>">Accueil</a></li>
-                    <li><a href="<?php ?>">Logout</a></li>
+                    <li><a href="<?php echo BASE_URL ?>">Accueil</a></li>
+                    <li><a href="<?php echo BASE_URL."/authenticate/logout" ?>">Logout</a></li>
                 </ul>
             </div>
         </div>

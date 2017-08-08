@@ -43,7 +43,7 @@
      */
     public function logout() {
       unset($_SESSION["auth"]);
-      header("loaction:".BASE_URL."/authenticate");
+      header("location:".BASE_URL."/authenticate");
     }
 
 	}# end class

@@ -4,7 +4,7 @@
  <tr>
      <td><?= $a->titre ?></td>
      <td><a class="btn btn-info" href="<?php echo BASE_URL ?>/admin/edit/<?php echo $a->id ?>">Edit</a></td>
-     <td><a class="btn btn-danger" href="<?php echo BASE_URL ?>/admin/delete">Delete</a></td>
+     <td><a class="btn btn-danger" href="<?php echo BASE_URL."/admin/delete/".$a->id ?>">Delete</a></td>
  </tr>
 <?php endforeach; ?>
 </table>

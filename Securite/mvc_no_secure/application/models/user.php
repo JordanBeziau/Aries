@@ -14,13 +14,16 @@
       "
         SELECT pseudo, profil, id
         FROM user
-        WHERE pseudo = '$login' AND password = '$password'
+        WHERE pseudo = :pseudo AND password = :password
         LIMIT 1;
       ";
-		  $req = $this->pdo->query($sql);
+		  $query = $this->pdo->prepare($sql);
+		  $query->bindParam(":pseudo", $login, PDO::PARAM_STR);
+		  $query->bindParam(":password", $password, PDO::PARAM_STR);
+		  $query->execute();
 
-		  return $req->rowCount() > 0 ?
-        $req->fetchAll(PDO::FETCH_OBJ) :
+		  return $query->rowCount() > 0 ?
+        $query->fetchAll(PDO::FETCH_OBJ) :
         false;
 
 		}

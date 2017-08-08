@@ -38,21 +38,6 @@
     }
 
     /**
-     * Insérer les données postées depuis admin/create
-     */
-    public function insert() {
-      $titre = $_POST["titre"];
-      $contenu = $_POST["contenu"];
-      $id = $_SESSION["auth"]["id"];
-      $sql =
-        "
-          INSERT INTO article(titre, contenu, createdAt, user_id)
-          VALUES('$titre', '$contenu', NOW(), '$id')
-        ";
-      $query = $this->pdo->exec($sql);
-    }
-
-    /**
      * return single post with ID
      * @param int $id
      * @return array of object
@@ -69,5 +54,53 @@
       ";
       $query = $this->pdo->query($sql);
       return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * Insérer les données postées depuis admin/create
+     */
+    public function insert() {
+      $titre = htmlspecialchars($_POST["titre"]);
+      $contenu = htmlspecialchars($_POST["contenu"]);
+      $id = $_SESSION["auth"]["id"];
+      $sql =
+        "
+          INSERT INTO article(titre, contenu, createdAt, user_id)
+          VALUES(:titre, :contenu, NOW(), :id)
+        ";
+      $query = $this->pdo->prepare($sql);
+      $query->execute([
+        ":titre"    => $titre,
+        ":contenu"  => $contenu,
+        ":id"       => $id
+      ]);
+    }
+
+    public function update() {
+      $titre = filter_var($_POST["titre"], FILE_SANITIZE_STRING);
+      $contenu = filter_var($_POST["contenu"], FILE_SANITIZE_STRING);
+      $id = $_POST["id"];
+      $sql =
+        "
+          UPDATE article
+          SET titre = :titre, contenu = :contenu
+          WHERE id = :id
+        ";
+      $query = $this->pdo->prepare($sql);
+      $query->execute([
+        ":titre"    => $titre,
+        ":contenu"  => $contenu,
+        ":id"       => $id
+      ]);
+    }
+
+    public function delete($id) {
+      $sql =
+        "
+          DELETE FROM article
+          WHERE id = :id
+        ";
+      $query = $this->pdo->prepare($sql);
+      $query->execute([":id" => $id]);
     }
 	}

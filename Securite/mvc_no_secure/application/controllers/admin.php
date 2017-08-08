@@ -46,25 +46,29 @@
         */
         
         public function edit($id){
-          if (empty($_POST)) {
-            $this->data = [
-              "titre" => "Admin | edit",
-              "article" => $this->modelArticle->single($id)
-            ];
-            $this->view("admin", "edit_view", $this->data);
-          } else {
-            $this->modelArticle->update();
-            header("location:".BASE_URL."/admin/edit/$id");
-          }
+          $this->data = [
+            "titre" => "Admin | edit",
+            "article" => $this->modelArticle->single($id)
+          ];
+          $this->view("admin", "edit_view", $this->data);
         }
 
         /**
-        * @param [[Type]] [[Description]]
+         *
+         */
+        public function update() {
+          $id = $_POST["id"];
+          $this->modelArticle->update();
+          header("location:".BASE_URL."/admin/edit/$id");
+        }
+
+        /**
+        * delete single post with id
+        * @param int $id de l'article
         */
-        
-        
-        public function delete($id){
-         
+        public function delete($id) {
+         $this->modelArticle->delete($id);
+         header("location:".BASE_URL."/admin");
         }
 
         

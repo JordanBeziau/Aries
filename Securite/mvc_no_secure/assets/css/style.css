@@ -17,3 +17,8 @@ textarea {
 }
 
 .meta-data { color: lightseagreen; }
+
+a.back-admin {
+  margin: 15px 0;
+  display: inline-block;
+}
