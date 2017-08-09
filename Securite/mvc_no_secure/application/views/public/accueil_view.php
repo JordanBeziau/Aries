@@ -9,4 +9,15 @@
         
         <?php endforeach; ?>
     </div>
+  <div class="row text-center">
+    <nav aria-label="page Navigation">
+      <ul class="pagination">
+        <?php
+          for ($i = 0; $i < $links; $i++) :
+            echo "<li><a href='".BASE_URL."/accueil/index/".$show * $i."'>".($i + 1)."</a></li>";
+          endfor;
+        ?>
+      </ul>
+    </nav>
+  </div>
 </div>

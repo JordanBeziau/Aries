@@ -33,5 +33,7 @@
 		<?php require $page; ?>
 	</div>
 
+    <?php if (isset($script)) { echo "<script src='".JS."index.js'></script>"; } ?>
+
 </body>
 </html>

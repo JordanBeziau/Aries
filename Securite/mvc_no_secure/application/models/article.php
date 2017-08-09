@@ -109,4 +109,36 @@
         $query->execute([":id" => $id]);
       }
     }
+
+    /**
+     * Sélection limitée à n articles
+     * @param int $index, int $posts
+     * @return object
+     */
+    public function limit($index = 0, $posts) {
+      $sql =
+        "
+        SELECT
+          A.id,
+          A.titre,
+          A.contenu,
+          A.createdAt,
+          U.pseudo
+        FROM article AS A
+        JOIN user AS U ON A.user_id = U.id
+        ORDER BY A.createdAt DESC
+        LIMIT $index, $posts
+      ";
+      $query = $this->pdo->query($sql);
+      return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * Compte le nombre d'enregistrement
+     * @return integer
+     */
+    public function count() {
+      $query = $this->pdo->query("SELECT COUNT(*) FROM article");
+      return intval($query->fetchColumn());
+    }
 	}

@@ -2,6 +2,7 @@
 	namespace app;
 	//use app\Admin as Admin;
 	use \core\Controller;
+	use core\Session;
 
 	class Admin extends Controller {
         
@@ -30,6 +31,9 @@
         "articles"  => $articles,
         "profil"    => $profil,
       ];
+      if (Session::exist("success")) {
+        $this->data["script"] = true;
+      }
       $this -> view("admin", "index_view", $this->data);
     }
 
@@ -54,6 +58,8 @@
         $this->view("admin", "create_view", $this->data);
       } else {
         $this->modelArticle->insert();
+        Session::set("success", "Article inséré avec succès !");
+        //setFlash("success", "Article inséré avec succès !");
         header("location:".BASE_URL."/admin");
       }
     }
@@ -83,8 +89,8 @@
         * delete single post with id
         * @param int $id de l'article
         */
-        public function delete($id) {
-         $this->modelArticle->delete($id);
+        public function delete($id, $token) {
+         $this->modelArticle->delete($id, $token);
          header("location:".BASE_URL."/admin");
         }
 
