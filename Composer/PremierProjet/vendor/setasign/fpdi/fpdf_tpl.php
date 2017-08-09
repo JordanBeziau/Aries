@@ -315,7 +315,7 @@ class FPDF_TPL extends fpdi_bridge
     }
 
     /**
-     * Puts an image.
+     * Puts an images.
      *
      * See FPDF/TCPDF documentation.
      *

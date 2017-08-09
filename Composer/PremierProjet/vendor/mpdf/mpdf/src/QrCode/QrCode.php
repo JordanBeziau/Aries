@@ -5,7 +5,7 @@ namespace Mpdf\QrCode;
 /**
  * Generateur de QRCode
  * (QR Code is registered trademark of DENSO WAVE INCORPORATED | http://www.denso-wave.com/qrcode/)
- * Fortement inspiré de "QRcode image PHP scripts version 0.50g (C)2000-2005,Y.Swetake"
+ * Fortement inspiré de "QRcode images PHP scripts version 0.50g (C)2000-2005,Y.Swetake"
  *
  * Distribué sous la licence LGPL.
  *
@@ -199,7 +199,7 @@ class QrCode
 	}
 
 	/*
-	 * permet d'obtenir une image PNG
+	 * permet d'obtenir une images PNG
 	 *
 	 * @param	float	taille du qrcode
 	 * @param	array	couleur du background (R,V,B)
@@ -237,7 +237,7 @@ class QrCode
 		if ($filename) {
 			imagepng($im, $filename, $quality);
 		} else {
-			header("Content-type: image/png");
+			header("Content-type: images/png");
 			imagepng($im);
 		}
 		imagedestroy($im);

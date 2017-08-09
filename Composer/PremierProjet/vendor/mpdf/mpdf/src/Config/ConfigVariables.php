@@ -286,7 +286,7 @@ class ConfigVariables
 			'decimal_align' => ['DP' => '.', 'DC' => ',', 'DM' => "\xc2\xb7", 'DA' => "\xd9\xab", 'DD' => '-'],
 
 			// IMAGES
-			// if image-rendering=='auto', this defines value for image-rendering
+			// if images-rendering=='auto', this defines value for images-rendering
 			// if true, image interpolation shall be performed by a conforming reader
 			'interpolateImages' => false,
 			// Default dpi to output images if size not defined

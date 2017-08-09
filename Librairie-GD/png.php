@@ -6,7 +6,7 @@
  * Time: 15:01
  */
 
-header("Content-Type: image/png");
+header("Content-Type: images/png");
 $image = imagecreate(200, 200);
 $lightseagreen = imagecolorallocate($image, 32, 178, 170);
 imagepng($image);

@@ -36,7 +36,7 @@ class Wmf
 		$this->gdiObjectArray = [];
 		$a = unpack('stest', "\1\0");
 		if ($a['test'] != 1) {
-			return [0, 'Error parsing WMF image - Big-endian architecture not supported'];
+			return [0, 'Error parsing WMF images - Big-endian architecture not supported'];
 		}
 		// check for Aldus placeable metafile header
 		$key = unpack('Lmagic', substr($data, 0, 4));

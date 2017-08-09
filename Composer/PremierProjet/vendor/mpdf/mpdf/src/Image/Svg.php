@@ -93,7 +93,7 @@ class Svg
 	public $scriptToLanguage;
 
 	/**
-	 * Holds content of SVG fonts defined in image
+	 * Holds content of SVG fonts defined in images
 	 *
 	 * @var array
 	 */
@@ -142,7 +142,7 @@ class Svg
 	var $svg_string;
 
 	/**
-	 * holds string info to write txt to image
+	 * holds string info to write txt to images
 	 *
 	 * @var string
 	 */
@@ -274,7 +274,7 @@ class Svg
 		];
 	}
 
-	// mPDF 5.7.4 Embedded image
+	// mPDF 5.7.4 Embedded images
 	function svgImage($attribs)
 	{
 		// x and y are coordinates
@@ -2241,7 +2241,7 @@ class Svg
 	}
 
 	//
-	//	write string to image
+	//	write string to images
 	function svgText()
 	{
 		// $tmp = count($this->txt_style)-1;
@@ -3480,8 +3480,8 @@ class Svg
 				$path_style = $this->svgDefineStyle($critere_style);
 				break;
 
-			// mPDF 5.7.4 Embedded image
-			case 'image':
+			// mPDF 5.7.4 Embedded images
+			case 'images':
 				if (isset($attribs['xlink:href']) && $attribs['xlink:href']) {
 					$this->svgImage($attribs);
 				}

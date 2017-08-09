@@ -107,13 +107,13 @@ class ImageProcessor
 		// Image Data passed directly as var:varname
 		if (preg_match('/var:\s*(.*)/', $file, $v)) {
 			if (!isset($this->mpdf->imageVars[$v[1]])) {
-				return $this->imageError($file, $firsttime, 'Unknown image variable');
+				return $this->imageError($file, $firsttime, 'Unknown images variable');
 			}
 			$data = $this->mpdf->imageVars[$v[1]];
 			$file = md5($data);
 		}
 
-		if (preg_match('/data:image\/(gif|jpeg|png);base64,(.*)/', $file, $v)) {
+		if (preg_match('/data:images\/(gif|jpeg|png);base64,(.*)/', $file, $v)) {
 			$type = $v[1];
 			$data = base64_decode($v[2]);
 			$file = md5($data);
@@ -146,7 +146,7 @@ class ImageProcessor
 			return $this->mpdf->formobjects[$file];
 		} elseif (isset($this->mpdf->formobjects[$file])) {
 			return $this->mpdf->formobjects[$file];
-		} elseif ($firsttime && isset($this->failedImages[$file])) { // Save re-trying image URL's which have already failed
+		} elseif ($firsttime && isset($this->failedImages[$file])) { // Save re-trying images URL's which have already failed
 			return $this->imageError($file, $firsttime, '');
 		}
 
@@ -184,7 +184,7 @@ class ImageProcessor
 		}
 
 		if (!$data) {
-			return $this->imageError($file, $firsttime, 'Could not find image file');
+			return $this->imageError($file, $firsttime, 'Could not find images file');
 		}
 
 		if (empty($type)) {
@@ -192,7 +192,7 @@ class ImageProcessor
 		}
 
 		if (($type == 'wmf' || $type == 'svg') && !$allowvector) {
-			return $this->imageError($file, $firsttime, 'WMF or SVG image file not supported in this context');
+			return $this->imageError($file, $firsttime, 'WMF or SVG images file not supported in this context');
 		}
 
 		// SVG
@@ -237,13 +237,13 @@ class ImageProcessor
 			}
 			if ($a[2] == 'DeviceCMYK' && (($this->mpdf->PDFA && $this->mpdf->restrictColorSpace != 3) || $this->mpdf->restrictColorSpace == 2)) {
 
-				// convert to RGB image
+				// convert to RGB images
 				if (!function_exists("gd_info")) {
-					throw new \Mpdf\MpdfException("JPG image may not use CMYK color space (" . $file . ").");
+					throw new \Mpdf\MpdfException("JPG images may not use CMYK color space (" . $file . ").");
 				}
 
 				if ($this->mpdf->PDFA && !$this->mpdf->PDFAauto) {
-					$this->mpdf->PDFAXwarnings[] = "JPG image may not use CMYK color space - " . $file . " - (Image converted to RGB. NB This will alter the colour profile of the image.)";
+					$this->mpdf->PDFAXwarnings[] = "JPG images may not use CMYK color space - " . $file . " - (Image converted to RGB. NB This will alter the colour profile of the images.)";
 				}
 
 				$im = @imagecreatefromstring($data);
@@ -252,11 +252,11 @@ class ImageProcessor
 					imageinterlace($im, false);
 					$check = @imagepng($im, $tempfile);
 					if (!$check) {
-						return $this->imageError($file, $firsttime, 'Error creating temporary file (' . $tempfile . ') whilst using GD library to parse JPG(CMYK) image');
+						return $this->imageError($file, $firsttime, 'Error creating temporary file (' . $tempfile . ') whilst using GD library to parse JPG(CMYK) images');
 					}
 					$info = $this->getImage($tempfile, false);
 					if (!$info) {
-						return $this->imageError($file, $firsttime, 'Error parsing temporary file (' . $tempfile . ') created with GD library to parse JPG(CMYK) image');
+						return $this->imageError($file, $firsttime, 'Error parsing temporary file (' . $tempfile . ') created with GD library to parse JPG(CMYK) images');
 					}
 					imagedestroy($im);
 					unlink($tempfile);
@@ -268,18 +268,18 @@ class ImageProcessor
 					}
 					return $info;
 				} else {
-					return $this->imageError($file, $firsttime, 'Error creating GD image file from JPG(CMYK) image');
+					return $this->imageError($file, $firsttime, 'Error creating GD images file from JPG(CMYK) images');
 				}
 
 			} elseif ($a[2] == 'DeviceRGB' && ($this->mpdf->PDFX || $this->mpdf->restrictColorSpace == 3)) {
-				// Convert to CMYK image stream - nominally returned as type='png'
+				// Convert to CMYK images stream - nominally returned as type='png'
 				$info = $this->convImage($data, $a[2], 'DeviceCMYK', $a[0], $a[1], $ppUx, false);
 				if (($this->mpdf->PDFA && !$this->mpdf->PDFAauto) || ($this->mpdf->PDFX && !$this->mpdf->PDFXauto)) {
-					$this->mpdf->PDFAXwarnings[] = "JPG image may not use RGB color space - " . $file . " - (Image converted to CMYK. NB This will alter the colour profile of the image.)";
+					$this->mpdf->PDFAXwarnings[] = "JPG images may not use RGB color space - " . $file . " - (Image converted to CMYK. NB This will alter the colour profile of the images.)";
 				}
 
 			} elseif (($a[2] == 'DeviceRGB' || $a[2] == 'DeviceCMYK') && $this->mpdf->restrictColorSpace == 1) {
-				// Convert to Grayscale image stream - nominally returned as type='png'
+				// Convert to Grayscale images stream - nominally returned as type='png'
 				$info = $this->convImage($data, $a[2], 'DeviceGray', $a[0], $a[1], $ppUx, false);
 
 			} else {
@@ -323,7 +323,7 @@ class ImageProcessor
 			}
 
 			if (!$info) {
-				return $this->imageError($file, $firsttime, 'Error parsing or converting JPG image');
+				return $this->imageError($file, $firsttime, 'Error parsing or converting JPG images');
 			}
 
 			if ($firsttime) {
@@ -420,7 +420,7 @@ class ImageProcessor
 				// ("..and you should use its reciprocal for the PNG gamma.")
 				//if ($gAMA > 1) { $gAMA = 1/$gAMA; }
 				// (Some) Applications seem to ignore it... appearing how it was probably intended
-				// Test Case - image(s) on http://www.w3.org/TR/CSS21/intro.html  - PNG has gAMA set as 1.45454
+				// Test Case - images(s) on http://www.w3.org/TR/CSS21/intro.html  - PNG has gAMA set as 1.45454
 				// Probably unintentional as mentioned above and should be 0.45454 which is 1 / 2.2
 				// Tested on Windows PC
 				// Firefox and Opera display gray as 234 (correct, but looks wrong)
@@ -443,15 +443,15 @@ class ImageProcessor
 			// $firsttime added mPDF 6 so when PNG Grayscale with alpha using resrtictcolorspace to CMYK
 			// the alpha channel is sent through as secondtime as Indexed and should not be converted to CMYK
 			if ($firsttime && ($colspace == 'DeviceRGB' || $colspace == 'Indexed') && ($this->mpdf->PDFX || $this->mpdf->restrictColorSpace == 3)) {
-				// Convert to CMYK image stream - nominally returned as type='png'
+				// Convert to CMYK images stream - nominally returned as type='png'
 				$info = $this->convImage($data, $colspace, 'DeviceCMYK', $w, $h, $ppUx, $pngalpha, $gamma, $ct); // mPDF 5.7.2 Gamma correction
 				if (($this->mpdf->PDFA && !$this->mpdf->PDFAauto) || ($this->mpdf->PDFX && !$this->mpdf->PDFXauto)) {
-					$this->mpdf->PDFAXwarnings[] = "PNG image may not use RGB color space - " . $file . " - (Image converted to CMYK. NB This will alter the colour profile of the image.)";
+					$this->mpdf->PDFAXwarnings[] = "PNG images may not use RGB color space - " . $file . " - (Image converted to CMYK. NB This will alter the colour profile of the images.)";
 				}
 			} // $firsttime added mPDF 6 so when PNG Grayscale with alpha using resrtictcolorspace to CMYK
 			// the alpha channel is sent through as secondtime as Indexed and should not be converted to CMYK
 			elseif ($firsttime && ($colspace == 'DeviceRGB' || $colspace == 'Indexed') && $this->mpdf->restrictColorSpace == 1) {
-				// Convert to Grayscale image stream - nominally returned as type='png'
+				// Convert to Grayscale images stream - nominally returned as type='png'
 				$info = $this->convImage($data, $colspace, 'DeviceGray', $w, $h, $ppUx, $pngalpha, $gamma, $ct); // mPDF 5.7.2 Gamma correction
 			} elseif (($this->mpdf->PDFA || $this->mpdf->PDFX) && $pngalpha) {
 				// Remove alpha channel
@@ -472,12 +472,12 @@ class ImageProcessor
 					$gd = [];
 				}
 				if (!isset($gd['PNG Support'])) {
-					return $this->imageError($file, $firsttime, 'GD library required for PNG image (' . $errpng . ')');
+					return $this->imageError($file, $firsttime, 'GD library required for PNG images (' . $errpng . ')');
 				}
 				$im = imagecreatefromstring($data);
 
 				if (!$im) {
-					return $this->imageError($file, $firsttime, 'Error creating GD image from PNG file (' . $errpng . ')');
+					return $this->imageError($file, $firsttime, 'Error creating GD images from PNG file (' . $errpng . ')');
 				}
 				$w = imagesx($im);
 				$h = imagesy($im);
@@ -579,39 +579,39 @@ class ImageProcessor
 						$check = @imagepng($imgalpha, $tempfile_alpha);
 
 						if (!$check) {
-							return $this->imageError($file, $firsttime, 'Failed to create temporary image file (' . $tempfile_alpha . ') parsing PNG image with alpha channel (' . $errpng . ')');
+							return $this->imageError($file, $firsttime, 'Failed to create temporary images file (' . $tempfile_alpha . ') parsing PNG images with alpha channel (' . $errpng . ')');
 						}
 
 						imagedestroy($imgalpha);
-						// extract image without alpha channel
+						// extract images without alpha channel
 						$imgplain = imagecreatetruecolor($w, $h);
 						imagealphablending($imgplain, false); // mPDF 5.7.2
 						imagecopy($imgplain, $im, 0, 0, 0, 0, $w, $h);
 
-						// create temp image file
+						// create temp images file
 						$check = @imagepng($imgplain, $tempfile);
 						if (!$check) {
-							return $this->imageError($file, $firsttime, 'Failed to create temporary image file (' . $tempfile . ') parsing PNG image with alpha channel (' . $errpng . ')');
+							return $this->imageError($file, $firsttime, 'Failed to create temporary images file (' . $tempfile . ') parsing PNG images with alpha channel (' . $errpng . ')');
 						}
 						imagedestroy($imgplain);
-						// embed mask image
+						// embed mask images
 						$minfo = $this->getImage($tempfile_alpha, false);
 						unlink($tempfile_alpha);
 
 						if (!$minfo) {
-							return $this->imageError($file, $firsttime, 'Error parsing temporary file (' . $tempfile_alpha . ') created with GD library to parse PNG image');
+							return $this->imageError($file, $firsttime, 'Error parsing temporary file (' . $tempfile_alpha . ') created with GD library to parse PNG images');
 						}
 
 						$imgmask = count($this->mpdf->images) + 1;
 						$minfo['cs'] = 'DeviceGray';
 						$minfo['i'] = $imgmask;
 						$this->mpdf->images[$tempfile_alpha] = $minfo;
-						// embed image, masked with previously embedded mask
+						// embed images, masked with previously embedded mask
 						$info = $this->getImage($tempfile, false);
 						unlink($tempfile);
 
 						if (!$info) {
-							return $this->imageError($file, $firsttime, 'Error parsing temporary file (' . $tempfile . ') created with GD library to parse PNG image');
+							return $this->imageError($file, $firsttime, 'Error parsing temporary file (' . $tempfile . ') created with GD library to parse PNG images');
 						}
 
 						$info['masked'] = $imgmask;
@@ -667,13 +667,13 @@ class ImageProcessor
 
 						$check = @imagepng($im, $tempfile);
 						if (!$check) {
-							return $this->imageError($file, $firsttime, 'Failed to create temporary image file (' . $tempfile . ') parsing PNG image (' . $errpng . ')');
+							return $this->imageError($file, $firsttime, 'Failed to create temporary images file (' . $tempfile . ') parsing PNG images (' . $errpng . ')');
 						}
 						imagedestroy($im);
 						$info = $this->getImage($tempfile, false);
 						unlink($tempfile);
 						if (!$info) {
-							return $this->imageError($file, $firsttime, 'Error parsing temporary file (' . $tempfile . ') created with GD library to parse PNG image');
+							return $this->imageError($file, $firsttime, 'Error parsing temporary file (' . $tempfile . ') created with GD library to parse PNG images');
 						}
 
 						if ($ppUx) {
@@ -692,9 +692,9 @@ class ImageProcessor
 						return $info;
 					}
 				}
-			} else { // PNG image with no need to convert alph channels, bpc <> 8 etc.
+			} else { // PNG images with no need to convert alph channels, bpc <> 8 etc.
 				$parms = '/DecodeParms <</Predictor 15 /Colors ' . $channels . ' /BitsPerComponent ' . $bpc . ' /Columns ' . $w . '>>';
-				//Scan chunks looking for palette, transparency and image data
+				//Scan chunks looking for palette, transparency and images data
 				$pal = '';
 				$trns = '';
 				$pngdata = '';
@@ -753,14 +753,14 @@ class ImageProcessor
 					} elseif (preg_match('/[a-zA-Z]{4}/', $type)) {
 						$p += $n + 4;
 					} else {
-						return $this->imageError($file, $firsttime, 'Error parsing PNG image data');
+						return $this->imageError($file, $firsttime, 'Error parsing PNG images data');
 					}
 				} while ($n);
 				if (!$pngdata) {
-					return $this->imageError($file, $firsttime, 'Error parsing PNG image data - no IDAT data found');
+					return $this->imageError($file, $firsttime, 'Error parsing PNG images data - no IDAT data found');
 				}
 				if ($colspace == 'Indexed' && empty($pal)) {
-					return $this->imageError($file, $firsttime, 'Error parsing PNG image data - missing colour palette');
+					return $this->imageError($file, $firsttime, 'Error parsing PNG images data - missing colour palette');
 				}
 
 				if ($colspace == 'Indexed' && $icc) {
@@ -775,7 +775,7 @@ class ImageProcessor
 			}
 
 			if (!$info) {
-				return $this->imageError($file, $firsttime, 'Error parsing or converting PNG image');
+				return $this->imageError($file, $firsttime, 'Error parsing or converting PNG images');
 			}
 
 			if ($firsttime) {
@@ -806,24 +806,24 @@ class ImageProcessor
 						ob_start();
 						$check = @imagepng($im);
 						if (!$check) {
-							return $this->imageError($file, $firsttime, 'Error creating temporary image object whilst using GD library to parse GIF image');
+							return $this->imageError($file, $firsttime, 'Error creating temporary images object whilst using GD library to parse GIF images');
 						}
 						$this->mpdf->imageVars['tempImage'] = ob_get_contents();
 						$tempimglnk = 'var:tempImage';
 						ob_end_clean();
 						$info = $this->getImage($tempimglnk, false);
 						if (!$info) {
-							return $this->imageError($file, $firsttime, 'Error parsing temporary file image object created with GD library to parse GIF image');
+							return $this->imageError($file, $firsttime, 'Error parsing temporary file images object created with GD library to parse GIF images');
 						}
 						imagedestroy($im);
 					} else {
 						$check = @imagepng($im, $tempfile);
 						if (!$check) {
-							return $this->imageError($file, $firsttime, 'Error creating temporary file (' . $tempfile . ') whilst using GD library to parse GIF image');
+							return $this->imageError($file, $firsttime, 'Error creating temporary file (' . $tempfile . ') whilst using GD library to parse GIF images');
 						}
 						$info = $this->getImage($tempfile, false);
 						if (!$info) {
-							return $this->imageError($file, $firsttime, 'Error parsing temporary file (' . $tempfile . ') created with GD library to parse GIF image');
+							return $this->imageError($file, $firsttime, 'Error parsing temporary file (' . $tempfile . ') created with GD library to parse GIF images');
 						}
 						imagedestroy($im);
 						unlink($tempfile);
@@ -836,7 +836,7 @@ class ImageProcessor
 					}
 					return $info;
 				} else {
-					return $this->imageError($file, $firsttime, 'Error creating GD image file from GIF image');
+					return $this->imageError($file, $firsttime, 'Error creating GD images file from GIF images');
 				}
 			}
 
@@ -877,7 +877,7 @@ class ImageProcessor
 			$gif->ClearData();
 
 			if ($colspace == 'Indexed' and empty($pal)) {
-				return $this->imageError($file, $firsttime, 'Error parsing GIF image - missing colour palette');
+				return $this->imageError($file, $firsttime, 'Error parsing GIF images - missing colour palette');
 			}
 
 			if ($this->mpdf->compress) {
@@ -924,7 +924,7 @@ class ImageProcessor
 				if ($wmfres[1]) {
 					return $this->imageError($file, $firsttime, $wmfres[1]);
 				}
-				return $this->imageError($file, $firsttime, 'Error parsing WMF image');
+				return $this->imageError($file, $firsttime, 'Error parsing WMF images');
 			}
 
 			$info = ['x' => $wmfres[2][0], 'y' => $wmfres[2][1], 'w' => $wmfres[3][0], 'h' => $wmfres[3][1], 'data' => $wmfres[1]];
@@ -947,7 +947,7 @@ class ImageProcessor
 				$im = @imagecreatefromstring($data);
 
 				if (!$im) {
-					return $this->imageError($file, $firsttime, 'Error parsing image file - image type not recognised, and not supported by GD imagecreate');
+					return $this->imageError($file, $firsttime, 'Error parsing images file - images type not recognised, and not supported by GD imagecreate');
 				}
 
 				$tempfile = $this->cache->tempFilename('_tempImgPNG' . md5($file) . random_int(1, 10000) . '.png');
@@ -959,7 +959,7 @@ class ImageProcessor
 				$check = @imagepng($im, $tempfile);
 
 				if (!$check) {
-					return $this->imageError($file, $firsttime, 'Error creating temporary file (' . $tempfile . ') whilst using GD library to parse unknown image type');
+					return $this->imageError($file, $firsttime, 'Error creating temporary file (' . $tempfile . ') whilst using GD library to parse unknown images type');
 				}
 
 				$info = $this->getImage($tempfile, false);
@@ -968,7 +968,7 @@ class ImageProcessor
 				unlink($tempfile);
 
 				if (!$info) {
-					return $this->imageError($file, $firsttime, 'Error parsing temporary file (' . $tempfile . ') created with GD library to parse unknown image type');
+					return $this->imageError($file, $firsttime, 'Error parsing temporary file (' . $tempfile . ') created with GD library to parse unknown images type');
 				}
 
 				$info['type'] = 'png';
@@ -982,7 +982,7 @@ class ImageProcessor
 			}
 		}
 
-		return $this->imageError($file, $firsttime, 'Error parsing image file - image type not recognised');
+		return $this->imageError($file, $firsttime, 'Error parsing images file - images type not recognised');
 	}
 
 	private function convImage(&$data, $colspace, $targetcs, $w, $h, $dpi, $mask, $gamma_correction = false, $pngcolortype = false)
@@ -1258,7 +1258,7 @@ class ImageProcessor
 
 	/**
 	 * Corrects 2-byte integer to 8-bit depth value
-	 * If original image is bpc != 8, tRNS will be in this bpc
+	 * If original images is bpc != 8, tRNS will be in this bpc
 	 * $im from imagecreatefromstring will always be in bpc=8
 	 * So why do we only need to correct 16-bit tRNS and NOT 2 or 4-bit???
 	 */
@@ -1303,7 +1303,7 @@ class ImageProcessor
 	}
 
 	/**
-	 * Throw an exception and save re-trying image URL's which have already failed
+	 * Throw an exception and save re-trying images URL's which have already failed
 	 */
 	private function imageError($file, $firsttime, $msg)
 	{

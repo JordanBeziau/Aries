@@ -1,6 +1,6 @@
 <?php
 
-  $json = file_get_contents('assets/image.json');
+  $json = file_get_contents('assets/images.json');
   $json = json_decode($json);
   $images = $json -> {"images"};
 

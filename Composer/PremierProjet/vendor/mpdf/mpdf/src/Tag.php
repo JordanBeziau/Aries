@@ -1573,7 +1573,7 @@ class Tag
 					$h = $maxHeight - $extraheight;
 					$w = abs($h * $info['w'] / $info['h']);
 				}
-				$objattr['type'] = 'image';
+				$objattr['type'] = 'images';
 				$objattr['itype'] = $info['type'];
 
 				$objattr['orig_h'] = $info['h'];
@@ -1584,7 +1584,7 @@ class Tag
 				$objattr['width'] = $w + $extrawidth;
 				$objattr['image_height'] = $h;
 				$objattr['image_width'] = $w;
-				$e = "\xbb\xa4\xactype=image,objattr=" . serialize($objattr) . "\xbb\xa4\xac";
+				$e = "\xbb\xa4\xactype=images,objattr=" . serialize($objattr) . "\xbb\xa4\xac";
 				$properties = [];
 				if ($this->mpdf->tableLevel) {
 					$this->mpdf->_saveCellTextBuffer($e, $this->mpdf->HREF);
@@ -2459,7 +2459,7 @@ class Tag
 						&& !$this->mpdf->kwt && !$this->mpdf->ColActive && !$this->mpdf->keep_block_together) {
 					$ret = $this->mpdf->SetBackground($properties, $currblk['inner_width']);
 					if ($ret) {
-						$currblk['background-image'] = $ret;
+						$currblk['background-images'] = $ret;
 					}
 				}
 				/* -- END BACKGROUNDS -- */
@@ -2520,7 +2520,7 @@ class Tag
 						}
 					}
 
-					// List-image
+					// List-images
 					if (!isset($currblk['list_style_image']) || !$currblk['list_style_image']) {
 						$currblk['list_style_image'] = 'none';
 					}
@@ -2729,7 +2729,7 @@ class Tag
 
 				$objattr['type'] = 'hr';
 				$objattr['height'] = $objattr['linewidth'] + $objattr['margin_top'] + $objattr['margin_bottom'];
-				$e = "\xbb\xa4\xactype=image,objattr=" . serialize($objattr) . "\xbb\xa4\xac";
+				$e = "\xbb\xa4\xactype=images,objattr=" . serialize($objattr) . "\xbb\xa4\xac";
 
 				// Clear properties - tidy up
 				$properties = [];
@@ -3460,13 +3460,13 @@ class Tag
 										$w = abs($info['w']) / Mpdf::SCALE;
 										$h = abs($info['h']) / Mpdf::SCALE;
 									} else {
-										//Put image at default image dpi
+										//Put images at default images dpi
 										$w = ($info['w'] / Mpdf::SCALE) * (72 / $this->mpdf->img_dpi);
 										$h = ($info['h'] / Mpdf::SCALE) * (72 / $this->mpdf->img_dpi);
 									}
 								}
 								if (isset($properties['IMAGE-RESOLUTION'])) {
-									if (preg_match('/from-image/i', $properties['IMAGE-RESOLUTION']) && isset($info['set-dpi']) && $info['set-dpi'] > 0) {
+									if (preg_match('/from-images/i', $properties['IMAGE-RESOLUTION']) && isset($info['set-dpi']) && $info['set-dpi'] > 0) {
 										$w *= $this->mpdf->img_dpi / $info['set-dpi'];
 										$h *= $this->mpdf->img_dpi / $info['set-dpi'];
 									} elseif (preg_match('/(\d+)dpi/i', $properties['IMAGE-RESOLUTION'], $m)) {
@@ -3501,7 +3501,7 @@ class Tag
 							}
 							$height = $h + $extraheight;
 							$width = $w + $extrawidth;
-							$objattr['type'] = 'image';
+							$objattr['type'] = 'images';
 							$objattr['itype'] = $info['type'];
 							$objattr['orig_h'] = $info['h'];
 							$objattr['orig_w'] = $info['w'];
@@ -3954,13 +3954,13 @@ class Tag
 								$w = abs($info['w']) / Mpdf::SCALE;
 								$h = abs($info['h']) / Mpdf::SCALE;
 							} else {
-								//Put image at default image dpi
+								//Put images at default images dpi
 								$w = ($info['w'] / Mpdf::SCALE) * (72 / $this->mpdf->img_dpi);
 								$h = ($info['h'] / Mpdf::SCALE) * (72 / $this->mpdf->img_dpi);
 							}
 						}
 						if (isset($properties['IMAGE-RESOLUTION'])) {
-							if (preg_match('/from-image/i', $properties['IMAGE-RESOLUTION']) && isset($info['set-dpi']) && $info['set-dpi'] > 0) {
+							if (preg_match('/from-images/i', $properties['IMAGE-RESOLUTION']) && isset($info['set-dpi']) && $info['set-dpi'] > 0) {
 								$w *= $this->mpdf->img_dpi / $info['set-dpi'];
 								$h *= $this->mpdf->img_dpi / $info['set-dpi'];
 							} elseif (preg_match('/(\d+)dpi/i', $properties['IMAGE-RESOLUTION'], $m)) {
@@ -4013,7 +4013,7 @@ class Tag
 						$h = $maxHeight - $extraheight;
 						$w = abs($h * $info['w'] / $info['h']);
 					}
-					$objattr['type'] = 'image';
+					$objattr['type'] = 'images';
 					$objattr['itype'] = $info['type'];
 
 					$objattr['orig_h'] = $info['h'];
@@ -4044,7 +4044,7 @@ class Tag
 						$objattr['transform'] = $properties['TRANSFORM'];
 					}
 
-					$e = "\xbb\xa4\xactype=image,objattr=" . serialize($objattr) . "\xbb\xa4\xac";
+					$e = "\xbb\xa4\xactype=images,objattr=" . serialize($objattr) . "\xbb\xa4\xac";
 
 					// Clear properties - tidy up
 					$properties = [];
@@ -4312,7 +4312,7 @@ class Tag
 				$objattr['width'] = $w + $extrawidth;
 				$objattr['type'] = 'textcircle';
 
-				$e = "\xbb\xa4\xactype=image,objattr=" . serialize($objattr) . "\xbb\xa4\xac";
+				$e = "\xbb\xa4\xactype=images,objattr=" . serialize($objattr) . "\xbb\xa4\xac";
 
 				// Clear properties - tidy up
 				$properties = [];
@@ -4749,7 +4749,7 @@ class Tag
 				if (isset($properties['BACKGROUND-IMAGE']) && $properties['BACKGROUND-IMAGE'] && !$this->mpdf->kwt && !$this->mpdf->ColActive) {
 					$ret = $this->mpdf->SetBackground($properties, $currblk['inner_width']);
 					if ($ret) {
-						$table['background-image'] = $ret;
+						$table['background-images'] = $ret;
 					}
 				}
 				/* -- END BACKGROUNDS -- */
@@ -5171,7 +5171,7 @@ class Tag
 				if (isset($properties['BACKGROUND-IMAGE']) && $properties['BACKGROUND-IMAGE'] && !$this->mpdf->keep_block_together) {
 					$ret = $this->mpdf->SetBackground($properties, $this->mpdf->blk[$this->mpdf->blklvl]['inner_width']);
 					if ($ret) {
-						$c['background-image'] = $ret;
+						$c['background-images'] = $ret;
 					}
 				}
 				/* -- END BACKGROUNDS -- */

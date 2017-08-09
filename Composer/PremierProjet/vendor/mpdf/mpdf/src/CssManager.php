@@ -162,7 +162,7 @@ class CssManager
 					for ($i = 0; $i < count($cxtem[0]); $i++) {
 						// path is relative to original stlyesheet!!
 						$embedded = $cxtem[2][$i];
-						if (!preg_match('/^data:image/i', $embedded)) { // mPDF 5.5.13
+						if (!preg_match('/^data:images/i', $embedded)) { // mPDF 5.5.13
 							$this->mpdf->GetFullPath($embedded, $cssBasePath);
 							$CSSextblock = preg_replace('/' . preg_quote($cxtem[0][$i], '/') . '/', ($cxtem[1][$i] . $embedded . $cxtem[3][$i]), $CSSextblock);
 						}
@@ -185,7 +185,7 @@ class CssManager
 			if ($xem) {
 				for ($i = 0; $i < count($cxtem[0]); $i++) {
 					$embedded = $cxtem[2][$i];
-					if (!preg_match('/^data:image/i', $embedded)) { // mPDF 5.5.13
+					if (!preg_match('/^data:images/i', $embedded)) { // mPDF 5.5.13
 						$this->mpdf->GetFullPath($embedded);
 						$tmpCSSstr = preg_replace('/' . preg_quote($cxtem[0][$i], '/') . '/', ($cxtem[1][$i] . $embedded . $cxtem[3][$i]), $tmpCSSstr);
 					}
@@ -208,8 +208,8 @@ class CssManager
 			}
 		}
 
-		// Replace any background: url(data:image... with temporary image file reference
-		preg_match_all("/(url\(data:image\/(jpeg|gif|png);base64,(.*?)\))/si", $CSSstr, $idata); // mPDF 5.7.2
+		// Replace any background: url(data:images... with temporary images file reference
+		preg_match_all("/(url\(data:images\/(jpeg|gif|png);base64,(.*?)\))/si", $CSSstr, $idata); // mPDF 5.7.2
 		if (count($idata[0])) {
 			for ($i = 0; $i < count($idata[0]); $i++) {
 				$file = $this->cache->write('_tempCSSidata' . random_int(1, 10000) . '_' . $i . '.' . $idata[2][$i], base64_decode($idata[3][$i]));
@@ -220,7 +220,7 @@ class CssManager
 		$CSSstr = preg_replace('/(<\!\-\-|\-\->)/s', ' ', $CSSstr);
 
 		// mPDF 5.7.4 URLs
-		// Characters "(" ")" and ";" in url() e.g. background-image, cause problems parsing the CSS string
+		// Characters "(" ")" and ";" in url() e.g. background-images, cause problems parsing the CSS string
 		// URLencode ( and ), but change ";" to a code which can be converted back after parsing (so as not to confuse ;
 		// with a segment delimiter in the URI)
 		$tempmarker = '%ZZ';
@@ -430,7 +430,7 @@ class CssManager
 	{
 		$html = htmlspecialchars_decode($html); // mPDF 5.7.4 URLs
 		// mPDF 5.7.4 URLs
-		// Characters "(" ")" and ";" in url() e.g. background-image, cause probems parsing the CSS string
+		// Characters "(" ")" and ";" in url() e.g. background-images, cause probems parsing the CSS string
 		// URLencode ( and ), but change ";" to a code which can be converted back after parsing (so as not to confuse ;
 		// with a segment delimiter in the URI)
 		$tempmarker = '%ZZ';

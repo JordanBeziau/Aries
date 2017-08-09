@@ -755,7 +755,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 	var $FontFiles; //array of font files
 
 	var $images; //array of used images
-	var $imageVars = []; //array of image vars
+	var $imageVars = []; //array of images vars
 
 	var $PageLinks; //array of links in pages
 	var $links; //array of internal links
@@ -1974,7 +1974,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 
 		if (isset($size['w']) && $size['w']) {
 			if ($size['w'] == 'contain') {
-				// Scale the image, while preserving its intrinsic aspect ratio (if any),
+				// Scale the images, while preserving its intrinsic aspect ratio (if any),
 				// to the largest size such that both its width and its height can fit inside the background positioning area.
 				// Same as resize==3
 				$h = $imh * $cw / $imw;
@@ -1984,7 +1984,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 					$h = $ch;
 				}
 			} elseif ($size['w'] == 'cover') {
-				// Scale the image, while preserving its intrinsic aspect ratio (if any),
+				// Scale the images, while preserving its intrinsic aspect ratio (if any),
 				// to the smallest size such that both its width and its height can completely cover the background positioning area.
 				$h = $imh * $cw / $imw;
 				$w = $cw;
@@ -2091,7 +2091,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 				$orig_w = $sizesarray['WIDTH'] * Mpdf::SCALE;  // in user units i.e. mm
 				$orig_h = $sizesarray['HEIGHT'] * Mpdf::SCALE;  // (using $this->img_dpi)
 				if (isset($properties['BACKGROUND-IMAGE-RESOLUTION'])) {
-					if (preg_match('/from-image/i', $properties['BACKGROUND-IMAGE-RESOLUTION']) && isset($sizesarray['set-dpi']) && $sizesarray['set-dpi'] > 0) {
+					if (preg_match('/from-images/i', $properties['BACKGROUND-IMAGE-RESOLUTION']) && isset($sizesarray['set-dpi']) && $sizesarray['set-dpi'] > 0) {
 						$orig_w *= $this->img_dpi / $sizesarray['set-dpi'];
 						$orig_h *= $this->img_dpi / $sizesarray['set-dpi'];
 					} elseif (preg_match('/(\d+)dpi/i', $properties['BACKGROUND-IMAGE-RESOLUTION'], $m)) {
@@ -2298,7 +2298,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 					if (isset($pb['clippath']) && $pb['clippath']) {
 						$s .= $pb['clippath'] . "\n";
 					}
-					if ($this->writingHTMLfooter || $this->writingHTMLheader) { // Write each (tiles) image rather than use as a pattern
+					if ($this->writingHTMLfooter || $this->writingHTMLheader) { // Write each (tiles) images rather than use as a pattern
 						$iw = $pb['orig_w'] / Mpdf::SCALE;
 						$ih = $pb['orig_h'] / Mpdf::SCALE;
 
@@ -2318,7 +2318,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 							$size = $pb['size'];
 
 							if ($size['w'] == 'contain') {
-								// Scale the image, while preserving its intrinsic aspect ratio (if any), to the largest
+								// Scale the images, while preserving its intrinsic aspect ratio (if any), to the largest
 								// size such that both its width and its height can fit inside the background positioning area.
 								// Same as resize==3
 								$ih = $ih * $pb['bpa']['w'] / $iw;
@@ -2328,7 +2328,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 									$ih = $pb['bpa']['h'];
 								}
 							} elseif ($size['w'] == 'cover') {
-								// Scale the image, while preserving its intrinsic aspect ratio (if any), to the smallest
+								// Scale the images, while preserving its intrinsic aspect ratio (if any), to the smallest
 								// size such that both its width and its height can completely cover the background positioning area.
 								$ih = $ih * $pb['bpa']['w'] / $iw;
 								$iw = $pb['bpa']['w'];
@@ -2490,7 +2490,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 					}
 
 					// mPDF 5.7.3
-					if ($this->writingHTMLfooter || $this->writingHTMLheader) { // Write each (tiles) image rather than use as a pattern
+					if ($this->writingHTMLfooter || $this->writingHTMLheader) { // Write each (tiles) images rather than use as a pattern
 						$iw = $pb['orig_w'] / Mpdf::SCALE;
 						$ih = $pb['orig_h'] / Mpdf::SCALE;
 
@@ -2514,7 +2514,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 							$size = $pb['size'];
 
 							if ($size['w'] == 'contain') {
-								// Scale the image, while preserving its intrinsic aspect ratio (if any), to the largest size such that both its width and its height can fit inside the background positioning area.
+								// Scale the images, while preserving its intrinsic aspect ratio (if any), to the largest size such that both its width and its height can fit inside the background positioning area.
 								// Same as resize==3
 								$ih = $ih * $pb['bpa']['w'] / $iw;
 								$iw = $pb['bpa']['w'];
@@ -2523,7 +2523,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 									$ih = $pb['bpa']['h'];
 								}
 							} elseif ($size['w'] == 'cover') {
-								// Scale the image, while preserving its intrinsic aspect ratio (if any), to the smallest size such that both its width and its height can completely cover the background positioning area.
+								// Scale the images, while preserving its intrinsic aspect ratio (if any), to the smallest size such that both its width and its height can completely cover the background positioning area.
 								$ih = $ih * $pb['bpa']['w'] / $iw;
 								$iw = $pb['bpa']['w'];
 								if ($ih < $pb['bpa']['h']) {
@@ -6277,7 +6277,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 				$contentWidth += $this->GetStringWidth($chunk, true, (isset($cOTLdata[$k]) ? $cOTLdata[$k] : false), $this->textvar) * Mpdf::SCALE;
 			} elseif (isset($this->objectbuffer[$k]) && $this->objectbuffer[$k]) {
 				// LIST MARKERS	// mPDF 6  Lists
-				if ($this->objectbuffer[$k]['type'] == 'image' && isset($this->objectbuffer[$k]['listmarker']) && $this->objectbuffer[$k]['listmarker'] && $this->objectbuffer[$k]['listmarkerposition'] == 'outside') {
+				if ($this->objectbuffer[$k]['type'] == 'images' && isset($this->objectbuffer[$k]['listmarker']) && $this->objectbuffer[$k]['listmarker'] && $this->objectbuffer[$k]['listmarkerposition'] == 'outside') {
 					// do nothing
 				} else {
 					$contentWidth += $this->objectbuffer[$k]['OUTER-WIDTH'] * Mpdf::SCALE;
@@ -6524,7 +6524,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 				$CJKoverflow = false;
 			}
 			if ((((($contentWidth + $lastitalic) > $maxWidth) && ($content[(count($chunkorder) - 1)] != ' ') ) ||
-				(!$endofblock && $align == 'J' && ($next == 'image' || $next == 'select' || $next == 'input' || $next == 'textarea' || ($next == 'br' && $this->justifyB4br)))) && !($CJKoverflow && $this->allowCJKoverflow)) {
+				(!$endofblock && $align == 'J' && ($next == 'images' || $next == 'select' || $next == 'input' || $next == 'textarea' || ($next == 'br' && $this->justifyB4br)))) && !($CJKoverflow && $this->allowCJKoverflow)) {
 				// WORD SPACING
 				list($jcharspacing, $jws, $jkashida) = $this->GetJspacing($nb_carac, $nb_spaces, ($maxWidth - $lastitalic - $contentWidth - $WidthCorrection - (($this->cMarginL + $this->cMarginR) * Mpdf::SCALE) - ($paddingL + $paddingR + (($fpaddingL + $fpaddingR) * Mpdf::SCALE) )), $inclCursive, $cOTLdata);
 			} /* -- CJK-FONTS -- */ elseif ($this->checkCJK && $align == 'J' && $CJKoverflow && $this->allowCJKoverflow && $this->CJKforceend) {
@@ -6677,7 +6677,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 						$this->objectbuffer[$k]['OUTER-WIDTH'] +=$this->objectbuffer[$k]['outdent'];
 					}
 					// LIST MARKERS	// mPDF 6  Lists
-					if ($this->objectbuffer[$k]['type'] == 'image' && isset($this->objectbuffer[$k]['listmarker']) && $this->objectbuffer[$k]['listmarker'] && $this->objectbuffer[$k]['listmarkerposition'] == 'outside') {
+					if ($this->objectbuffer[$k]['type'] == 'images' && isset($this->objectbuffer[$k]['listmarker']) && $this->objectbuffer[$k]['listmarker'] && $this->objectbuffer[$k]['listmarkerposition'] == 'outside') {
 						// do nothing
 					} else {
 						$stringWidth = $this->objectbuffer[$k]['OUTER-WIDTH'];
@@ -6888,7 +6888,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 				$this->SetDColor($this->colorConverter->convert(0, $this->PDFAXwarnings));
 			}
 			// IMAGE
-			if ($objattr['type'] == 'image') {
+			if ($objattr['type'] == 'images') {
 				// mPDF 5.7.3 TRANSFORMS
 				if (isset($objattr['transform'])) {
 					$this->_out("\n" . '% BTR'); // Begin Transform
@@ -7019,7 +7019,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 					}
 				}
 				// mPDF 5.7.3 TRANSFORMS / BACKGROUND COLOR
-				// Transform also affects image background
+				// Transform also affects images background
 				if ($tr2) {
 					$this->_out('q ' . $tr2 . ' ');
 				}
@@ -7062,7 +7062,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 				}
 
 				// mPDF 5.7.3 TRANSFORMS
-				// Transform also affects image borders
+				// Transform also affects images borders
 				if ($tr2) {
 					$this->_out('q ' . $tr2 . ' ');
 				}
@@ -7466,7 +7466,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 			// if (isset($objattr['vertical-align'])) { $valign = $objattr['vertical-align']; }
 			// else { $valign = ''; }
 			// LIST MARKERS	// mPDF 6  Lists
-			if ($objattr['type'] == 'image' && isset($objattr['listmarker']) && $objattr['listmarker'] && $objattr['listmarkerposition'] == 'outside') {
+			if ($objattr['type'] == 'images' && isset($objattr['listmarker']) && $objattr['listmarker'] && $objattr['listmarkerposition'] == 'outside') {
 				// do nothing
 			} else {
 				$contentWidth += ($objattr['OUTER-WIDTH'] * Mpdf::SCALE);
@@ -7900,7 +7900,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 				foreach ($content as $k => $chunk) {
 					if (isset($this->objectbuffer[$k]) && $this->objectbuffer[$k]) {
 						// LIST MARKERS
-						if ($this->objectbuffer[$k]['type'] == 'image' && isset($this->objectbuffer[$k]['listmarker']) && $this->objectbuffer[$k]['listmarker']) {
+						if ($this->objectbuffer[$k]['type'] == 'images' && isset($this->objectbuffer[$k]['listmarker']) && $this->objectbuffer[$k]['listmarker']) {
 							if ($this->objectbuffer[$k]['listmarkerposition'] != 'outside') {
 								$contentWidth += $this->objectbuffer[$k]['OUTER-WIDTH'] * Mpdf::SCALE;
 							}
@@ -8214,7 +8214,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 
 						if (isset($this->objectbuffer[$k])) {
 							// LIST MARKERS	// mPDF 6  Lists
-							if ($this->objectbuffer[$k]['type'] == 'image' && isset($this->objectbuffer[$k]['listmarker']) && $this->objectbuffer[$k]['listmarker'] && $this->objectbuffer[$k]['listmarkerposition'] == 'outside') {
+							if ($this->objectbuffer[$k]['type'] == 'images' && isset($this->objectbuffer[$k]['listmarker']) && $this->objectbuffer[$k]['listmarker'] && $this->objectbuffer[$k]['listmarkerposition'] == 'outside') {
 								$stringWidth = 0;
 							} else {
 								$stringWidth = $this->objectbuffer[$k]['OUTER-WIDTH'];
@@ -8487,7 +8487,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 					$w = abs($info['w']) / Mpdf::SCALE;
 					$h = abs($info['h']) / Mpdf::SCALE;
 				} else {
-					//Put image at default image dpi
+					//Put images at default images dpi
 					$w = ($info['w'] / Mpdf::SCALE) * (72 / $this->img_dpi);
 					$h = ($info['h'] / Mpdf::SCALE) * (72 / $this->img_dpi);
 				}
@@ -8664,15 +8664,15 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 				$this->Link($x, $y, $w, $h, $link);
 			}
 
-			// Avoid writing text on top of the image. // THIS WAS OUTSIDE THE if ($paint) bit!!!!!!!!!!!!!!!!
+			// Avoid writing text on top of the images. // THIS WAS OUTSIDE THE if ($paint) bit!!!!!!!!!!!!!!!!
 			$this->y = $y + $h;
 		}
 
 		//Return width-height array
 		$sizesarray['WIDTH'] = $w;
 		$sizesarray['HEIGHT'] = $h;
-		$sizesarray['X'] = $x; //Position before painting image
-		$sizesarray['Y'] = $y; //Position before painting image
+		$sizesarray['X'] = $x; //Position before painting images
+		$sizesarray['Y'] = $y; //Position before painting images
 		$sizesarray['OUTPUT'] = $outstring;
 
 		$sizesarray['IMAGE_ID'] = $info['i'];
@@ -8727,7 +8727,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 			$extraWidth = ($objattr['border_left']['w'] + $objattr['border_right']['w'] + $objattr['margin_left'] + $objattr['margin_right']) / $k;
 			$extraHeight = ($objattr['border_top']['w'] + $objattr['border_bottom']['w'] + $objattr['margin_top'] + $objattr['margin_bottom']) / $k;
 
-			if ($type == 'image' || $type == 'barcode' || $type == 'textcircle') {
+			if ($type == 'images' || $type == 'barcode' || $type == 'textcircle') {
 				$extraWidth += ($objattr['padding_left'] + $objattr['padding_right']) / $k;
 				$extraHeight += ($objattr['padding_top'] + $objattr['padding_bottom']) / $k;
 			}
@@ -8741,7 +8741,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 			}
 		} // mPDF 6
 
-		if ($type == 'image' || (isset($objattr['subtype']) && $objattr['subtype'] == 'IMAGE')) {
+		if ($type == 'images' || (isset($objattr['subtype']) && $objattr['subtype'] == 'IMAGE')) {
 			if (isset($objattr['itype']) && ($objattr['itype'] == 'wmf' || $objattr['itype'] == 'svg')) {
 				$file = $objattr['file'];
 				$info = $this->formobjects[$file];
@@ -8768,14 +8768,14 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 				// LIST MARKERS	// mPDF 6  Lists
 				$displayheight = $h;
 				$displaywidth = $w;
-				if ($objattr['type'] == 'image' && isset($objattr['listmarker']) && $objattr['listmarker']) {
+				if ($objattr['type'] == 'images' && isset($objattr['listmarker']) && $objattr['listmarker']) {
 					$displayheight = 0;
 					if ($objattr['listmarkerposition'] == 'outside') {
 						$displaywidth = 0;
 					}
 				}
 
-				if ($widthUsed > 0 && $displaywidth > $widthLeft && (!$is_table || $type != 'image')) {  // New line needed
+				if ($widthUsed > 0 && $displaywidth > $widthLeft && (!$is_table || $type != 'images')) {  // New line needed
 					// mPDF 6  Lists
 					if (($y + $displayheight + $lineHeight > $this->PageBreakTrigger) && !$this->InFooter) {
 						return [-2, $w, $h];
@@ -8806,7 +8806,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 			$objattr['INNER-Y'] = $y;
 		}
 
-		if ($type == 'image') {
+		if ($type == 'images') {
 			// Automatically resize to width remaining
 			if ($w > ($widthLeft + 0.0001) && !$is_table) { // mPDF 5.7.4  0.0001 to allow for rounding errors when w==maxWidth
 				$w = $widthLeft;
@@ -10619,7 +10619,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 			$this->_out('/Width ' . $info['w']);
 			$this->_out('/Height ' . $info['h']);
 			if (isset($info['interpolation']) && $info['interpolation']) {
-				$this->_out('/Interpolate true'); // mPDF 6 - image interpolation shall be performed by a conforming reader
+				$this->_out('/Interpolate true'); // mPDF 6 - images interpolation shall be performed by a conforming reader
 			}
 			if (isset($info['masked'])) {
 				$this->_out('/SMask ' . ($this->n - 1) . ' 0 R');
@@ -13302,9 +13302,9 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 						}
 					}
 
-					if (isset($tablehf['background-image']) && $paintcell) {
-						if ($tablehf['background-image']['gradient'] && preg_match('/(-moz-)*(repeating-)*(linear|radial)-gradient/', $tablehf['background-image']['gradient'])) {
-							$g = $this->gradient->parseMozGradient($tablehf['background-image']['gradient']);
+					if (isset($tablehf['background-images']) && $paintcell) {
+						if ($tablehf['background-images']['gradient'] && preg_match('/(-moz-)*(repeating-)*(linear|radial)-gradient/', $tablehf['background-images']['gradient'])) {
+							$g = $this->gradient->parseMozGradient($tablehf['background-images']['gradient']);
 							if ($g) {
 								if ($table['borders_separate']) {
 									$px = $x + ($table['border_spacing_H'] / 2);
@@ -13323,7 +13323,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 									$this->tableBackgrounds[$level * 9 + 7][] = ['gradient' => true, 'x' => $px, 'y' => $py, 'w' => $pw, 'h' => $ph, 'gradtype' => $g['type'], 'stops' => $g['stops'], 'colorspace' => $g['colorspace'], 'coords' => $g['coords'], 'extend' => $g['extend'], 'clippath' => ''];
 								}
 							}
-						} elseif ($tablehf['background-image']['image_id']) { // Background pattern
+						} elseif ($tablehf['background-images']['image_id']) { // Background pattern
 							$n = count($this->patterns) + 1;
 							if ($table['borders_separate']) {
 								$px = $x + ($table['border_spacing_H'] / 2);
@@ -13337,16 +13337,16 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 								$ph = $h;
 							}
 							if ($this->ColActive) {
-								list($orig_w, $orig_h, $x_repeat, $y_repeat) = $this->_resizeBackgroundImage($tablehf['background-image']['orig_w'], $tablehf['background-image']['orig_h'], $pw, $ph, $tablehf['background-image']['resize'], $tablehf['background-image']['x_repeat'], $tablehf['background-image']['y_repeat']);
-								$this->patterns[$n] = ['x' => $px, 'y' => $py, 'w' => $pw, 'h' => $ph, 'pgh' => $this->h, 'image_id' => $tablehf['background-image']['image_id'], 'orig_w' => $orig_w, 'orig_h' => $orig_h, 'x_pos' => $tablehf['background-image']['x_pos'], 'y_pos' => $tablehf['background-image']['y_pos'], 'x_repeat' => $x_repeat, 'y_repeat' => $y_repeat, 'itype' => $tablehf['background-image']['itype']];
-								if ($tablehf['background-image']['opacity'] > 0 && $tablehf['background-image']['opacity'] < 1) {
-									$opac = $this->SetAlpha($tablehf['background-image']['opacity'], 'Normal', true);
+								list($orig_w, $orig_h, $x_repeat, $y_repeat) = $this->_resizeBackgroundImage($tablehf['background-images']['orig_w'], $tablehf['background-images']['orig_h'], $pw, $ph, $tablehf['background-images']['resize'], $tablehf['background-images']['x_repeat'], $tablehf['background-images']['y_repeat']);
+								$this->patterns[$n] = ['x' => $px, 'y' => $py, 'w' => $pw, 'h' => $ph, 'pgh' => $this->h, 'image_id' => $tablehf['background-images']['image_id'], 'orig_w' => $orig_w, 'orig_h' => $orig_h, 'x_pos' => $tablehf['background-images']['x_pos'], 'y_pos' => $tablehf['background-images']['y_pos'], 'x_repeat' => $x_repeat, 'y_repeat' => $y_repeat, 'itype' => $tablehf['background-images']['itype']];
+								if ($tablehf['background-images']['opacity'] > 0 && $tablehf['background-images']['opacity'] < 1) {
+									$opac = $this->SetAlpha($tablehf['background-images']['opacity'], 'Normal', true);
 								} else {
 									$opac = '';
 								}
 								$this->_out(sprintf('q /Pattern cs /P%d scn %s %.3F %.3F %.3F %.3F re f Q', $n, $opac, $px * Mpdf::SCALE, ($this->h - $py) * Mpdf::SCALE, $pw * Mpdf::SCALE, -$ph * Mpdf::SCALE));
 							} else {
-								$this->tableBackgrounds[$level * 9 + 8][] = ['x' => $px, 'y' => $py, 'w' => $pw, 'h' => $ph, 'image_id' => $tablehf['background-image']['image_id'], 'orig_w' => $tablehf['background-image']['orig_w'], 'orig_h' => $tablehf['background-image']['orig_h'], 'x_pos' => $tablehf['background-image']['x_pos'], 'y_pos' => $tablehf['background-image']['y_pos'], 'x_repeat' => $tablehf['background-image']['x_repeat'], 'y_repeat' => $tablehf['background-image']['y_repeat'], 'clippath' => '', 'resize' => $tablehf['background-image']['resize'], 'opacity' => $tablehf['background-image']['opacity'], 'itype' => $tablehf['background-image']['itype']];
+								$this->tableBackgrounds[$level * 9 + 8][] = ['x' => $px, 'y' => $py, 'w' => $pw, 'h' => $ph, 'image_id' => $tablehf['background-images']['image_id'], 'orig_w' => $tablehf['background-images']['orig_w'], 'orig_h' => $tablehf['background-images']['orig_h'], 'x_pos' => $tablehf['background-images']['x_pos'], 'y_pos' => $tablehf['background-images']['y_pos'], 'x_repeat' => $tablehf['background-images']['x_repeat'], 'y_repeat' => $tablehf['background-images']['y_repeat'], 'clippath' => '', 'resize' => $tablehf['background-images']['resize'], 'opacity' => $tablehf['background-images']['opacity'], 'itype' => $tablehf['background-images']['itype']];
 							}
 						}
 					}
@@ -14370,7 +14370,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 			$this->watermark($this->watermarkText, $this->watermarkAngle, 120, $this->watermarkTextAlpha); // Watermark text
 		}
 		if (($this->watermarkImage) && ($this->showWatermarkImage)) {
-			$this->watermarkImg($this->watermarkImage, $this->watermarkImageAlpha); // Watermark image
+			$this->watermarkImg($this->watermarkImage, $this->watermarkImageAlpha); // Watermark images
 		}
 		/* -- END WATERMARK -- */
 	}
@@ -15566,7 +15566,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 			if (isset($pb['BACKGROUND-IMAGE']) && $pb['BACKGROUND-IMAGE']) {
 				$ret = $this->SetBackground($pb, $this->blk[1]['inner_width']);
 				if ($ret) {
-					$this->blk[1]['background-image'] = $ret;
+					$this->blk[1]['background-images'] = $ret;
 				}
 			}
 			/* -- END BACKGROUNDS -- */
@@ -16631,7 +16631,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 						$w = abs($info['w']) / Mpdf::SCALE;
 						$h = abs($info['h']) / Mpdf::SCALE;
 					} else {
-						//Put image at default image dpi
+						//Put images at default images dpi
 						$w = ($info['w'] / Mpdf::SCALE) * (72 / $this->img_dpi);
 						$h = ($info['h'] / Mpdf::SCALE) * (72 / $this->img_dpi);
 					}
@@ -16655,7 +16655,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 				$w = abs($h * $info['w'] / $info['h']);
 			}
 
-			$objattr['type'] = 'image';
+			$objattr['type'] = 'images';
 			$objattr['itype'] = $info['type'];
 
 			$objattr['orig_h'] = $info['h'];
@@ -16682,7 +16682,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 
 			$objattr['listmarkerposition'] = $listitemposition;
 
-			$e = "\xbb\xa4\xactype=image,objattr=" . serialize($objattr) . "\xbb\xa4\xac";
+			$e = "\xbb\xa4\xactype=images,objattr=" . serialize($objattr) . "\xbb\xa4\xac";
 			$this->_saveTextBuffer($e);
 
 			if ($listitemposition == 'inside') {
@@ -17498,7 +17498,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 							$this->AddPage($this->CurOrientation);
 
 							// Added to correct Images already set on line before page advanced
-							// i.e. if second inline image on line is higher than first and forces new page
+							// i.e. if second inline images on line is higher than first and forces new page
 							if (count($this->objectbuffer)) {
 								$yadj = $iby - $this->y;
 								foreach ($this->objectbuffer as $ib => $val) {
@@ -17546,7 +17546,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 					}
 
 					/* -- CSS-IMAGE-FLOAT -- */
-					if ($objattr['type'] == 'image' && isset($objattr['float'])) {
+					if ($objattr['type'] == 'images' && isset($objattr['float'])) {
 						$fy = $this->y;
 
 						// DIV TOP MARGIN/BORDER/PADDING
@@ -18822,14 +18822,14 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 				$this->pageBackgrounds[$blvl][] = ['gradient' => true, 'x' => $gx, 'y' => $gy, 'w' => $w, 'h' => $h, 'gradtype' => $g['type'], 'stops' => $g['stops'], 'colorspace' => $g['colorspace'], 'coords' => $g['coords'], 'extend' => $g['extend'], 'clippath' => $s, 'visibility' => $this->visibility, 'z-index' => $this->current_layer];
 			}
 		}
-		if (isset($this->blk[$blvl]['background-image'])) {
-			if (isset($this->blk[$blvl]['background-image']['gradient']) && $this->blk[$blvl]['background-image']['gradient'] && preg_match('/(-moz-)*(repeating-)*(linear|radial)-gradient/', $this->blk[$blvl]['background-image']['gradient'])) {
-				$g = $this->gradient->parseMozGradient($this->blk[$blvl]['background-image']['gradient']);
+		if (isset($this->blk[$blvl]['background-images'])) {
+			if (isset($this->blk[$blvl]['background-images']['gradient']) && $this->blk[$blvl]['background-images']['gradient'] && preg_match('/(-moz-)*(repeating-)*(linear|radial)-gradient/', $this->blk[$blvl]['background-images']['gradient'])) {
+				$g = $this->gradient->parseMozGradient($this->blk[$blvl]['background-images']['gradient']);
 				if ($g) {
 					$gx = $x0;
 					$gy = $y0;
 					// origin specifies the background-positioning-area (bpa)
-					if ($this->blk[$blvl]['background-image']['origin'] == 'padding-box') {
+					if ($this->blk[$blvl]['background-images']['origin'] == 'padding-box') {
 						$gx += $this->blk[$blvl]['border_left']['w'];
 						$w -= ($this->blk[$blvl]['border_left']['w'] + $this->blk[$blvl]['border_right']['w']);
 						if ($this->blk[$blvl]['border_top'] && $divider != 'pagetop' && !$continuingpage) {
@@ -18841,7 +18841,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 							$gy1 = $y1;
 						}
 						$h = $gy1 - $gy;
-					} elseif ($this->blk[$blvl]['background-image']['origin'] == 'content-box') {
+					} elseif ($this->blk[$blvl]['background-images']['origin'] == 'content-box') {
 						$gx += $this->blk[$blvl]['border_left']['w'] + $this->blk[$blvl]['padding_left'];
 						$w -= ($this->blk[$blvl]['border_left']['w'] + $this->blk[$blvl]['padding_left'] + $this->blk[$blvl]['border_right']['w'] + $this->blk[$blvl]['padding_right']);
 						if ($this->blk[$blvl]['border_top'] && $divider != 'pagetop' && !$continuingpage) {
@@ -18855,8 +18855,8 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 						$h = $gy1 - $gy;
 					}
 
-					if (isset($this->blk[$blvl]['background-image']['size']['w']) && $this->blk[$blvl]['background-image']['size']['w']) {
-						$size = $this->blk[$blvl]['background-image']['size'];
+					if (isset($this->blk[$blvl]['background-images']['size']['w']) && $this->blk[$blvl]['background-images']['size']['w']) {
+						$size = $this->blk[$blvl]['background-images']['size'];
 						if ($size['w'] != 'contain' && $size['w'] != 'cover') {
 							if (stristr($size['w'], '%')) {
 								$size['w'] = (float) $size['w'];
@@ -18877,20 +18877,20 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 					$this->pageBackgrounds[$blvl][] = ['gradient' => true, 'x' => $gx, 'y' => $gy, 'w' => $w, 'h' => $h, 'gradtype' => $g['type'], 'stops' => $g['stops'], 'colorspace' => $g['colorspace'], 'coords' => $g['coords'], 'extend' => $g['extend'], 'clippath' => $s, 'visibility' => $this->visibility, 'z-index' => $this->current_layer];
 				}
 			} else {
-				$image_id = $this->blk[$blvl]['background-image']['image_id'];
-				$orig_w = $this->blk[$blvl]['background-image']['orig_w'];
-				$orig_h = $this->blk[$blvl]['background-image']['orig_h'];
-				$x_pos = $this->blk[$blvl]['background-image']['x_pos'];
-				$y_pos = $this->blk[$blvl]['background-image']['y_pos'];
-				$x_repeat = $this->blk[$blvl]['background-image']['x_repeat'];
-				$y_repeat = $this->blk[$blvl]['background-image']['y_repeat'];
-				$resize = $this->blk[$blvl]['background-image']['resize'];
-				$opacity = $this->blk[$blvl]['background-image']['opacity'];
-				$itype = $this->blk[$blvl]['background-image']['itype'];
-				$size = $this->blk[$blvl]['background-image']['size'];
+				$image_id = $this->blk[$blvl]['background-images']['image_id'];
+				$orig_w = $this->blk[$blvl]['background-images']['orig_w'];
+				$orig_h = $this->blk[$blvl]['background-images']['orig_h'];
+				$x_pos = $this->blk[$blvl]['background-images']['x_pos'];
+				$y_pos = $this->blk[$blvl]['background-images']['y_pos'];
+				$x_repeat = $this->blk[$blvl]['background-images']['x_repeat'];
+				$y_repeat = $this->blk[$blvl]['background-images']['y_repeat'];
+				$resize = $this->blk[$blvl]['background-images']['resize'];
+				$opacity = $this->blk[$blvl]['background-images']['opacity'];
+				$itype = $this->blk[$blvl]['background-images']['itype'];
+				$size = $this->blk[$blvl]['background-images']['size'];
 				// origin specifies the background-positioning-area (bpa)
 				$bpa = ['x' => $x0, 'y' => $y0, 'w' => $w, 'h' => $h];
-				if ($this->blk[$blvl]['background-image']['origin'] == 'padding-box') {
+				if ($this->blk[$blvl]['background-images']['origin'] == 'padding-box') {
 					$bpa['x'] = $x0 + $this->blk[$blvl]['border_left']['w'];
 					$bpa['w'] = $w - ($this->blk[$blvl]['border_left']['w'] + $this->blk[$blvl]['border_right']['w']);
 					if ($this->blk[$blvl]['border_top'] && $divider != 'pagetop' && !$continuingpage) {
@@ -18904,7 +18904,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 						$bpay = $y1;
 					}
 					$bpa['h'] = $bpay - $bpa['y'];
-				} elseif ($this->blk[$blvl]['background-image']['origin'] == 'content-box') {
+				} elseif ($this->blk[$blvl]['background-images']['origin'] == 'content-box') {
 					$bpa['x'] = $x0 + $this->blk[$blvl]['border_left']['w'] + $this->blk[$blvl]['padding_left'];
 					$bpa['w'] = $w - ($this->blk[$blvl]['border_left']['w'] + $this->blk[$blvl]['padding_left'] + $this->blk[$blvl]['border_right']['w'] + $this->blk[$blvl]['padding_right']);
 					if ($this->blk[$blvl]['border_top'] && $divider != 'pagetop' && !$continuingpage) {
@@ -20787,7 +20787,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 					}
 
 
-					// If minimum width has already been set by a nested table or inline object (image/form), use it
+					// If minimum width has already been set by a nested table or inline object (images/form), use it
 					if (isset($c['nestedmiw']) && (!isset($this->table[1][1]['overflow']) || $this->table[1][1]['overflow'] != 'visible')) {
 						$miw = $c['nestedmiw'];
 					} else {
@@ -23015,8 +23015,8 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 						if (isset($cell['gradient'])) {
 							$tablefooter[$i][$js]['gradient'] = $cell['gradient']; // *BACKGROUNDS*
 						}
-						if (isset($cell['background-image'])) {
-							$tablefooter[$i][$js]['background-image'] = $cell['background-image']; // *BACKGROUNDS*
+						if (isset($cell['background-images'])) {
+							$tablefooter[$i][$js]['background-images'] = $cell['background-images']; // *BACKGROUNDS*
 						}
 
 						//CELL FILL BGCOLOR
@@ -23297,23 +23297,23 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 										}
 									}
 
-									if (isset($table['background-image'])) {
-										if ($table['background-image']['gradient'] && preg_match('/(-moz-)*(repeating-)*(linear|radial)-gradient/', $table['background-image']['gradient'])) {
-											$g = $this->gradient->parseMozGradient($table['background-image']['gradient']);
+									if (isset($table['background-images'])) {
+										if ($table['background-images']['gradient'] && preg_match('/(-moz-)*(repeating-)*(linear|radial)-gradient/', $table['background-images']['gradient'])) {
+											$g = $this->gradient->parseMozGradient($table['background-images']['gradient']);
 											if ($g) {
 												$this->tableBackgrounds[$level * 9 + 1][] = ['gradient' => true, 'x' => $bx, 'y' => $by, 'w' => $bw, 'h' => $bh, 'gradtype' => $g['type'], 'stops' => $g['stops'], 'colorspace' => $g['colorspace'], 'coords' => $g['coords'], 'extend' => $g['extend'], 'clippath' => ''];
 											}
 										} else {
-											$image_id = $table['background-image']['image_id'];
-											$orig_w = $table['background-image']['orig_w'];
-											$orig_h = $table['background-image']['orig_h'];
-											$x_pos = $table['background-image']['x_pos'];
-											$y_pos = $table['background-image']['y_pos'];
-											$x_repeat = $table['background-image']['x_repeat'];
-											$y_repeat = $table['background-image']['y_repeat'];
-											$resize = $table['background-image']['resize'];
-											$opacity = $table['background-image']['opacity'];
-											$itype = $table['background-image']['itype'];
+											$image_id = $table['background-images']['image_id'];
+											$orig_w = $table['background-images']['orig_w'];
+											$orig_h = $table['background-images']['orig_h'];
+											$x_pos = $table['background-images']['x_pos'];
+											$y_pos = $table['background-images']['y_pos'];
+											$x_repeat = $table['background-images']['x_repeat'];
+											$y_repeat = $table['background-images']['y_repeat'];
+											$resize = $table['background-images']['resize'];
+											$opacity = $table['background-images']['opacity'];
+											$itype = $table['background-images']['itype'];
 											$this->tableBackgrounds[$level * 9 + 2][] = ['x' => $bx, 'y' => $by, 'w' => $bw, 'h' => $bh, 'image_id' => $image_id, 'orig_w' => $orig_w, 'orig_h' => $orig_h, 'x_pos' => $x_pos, 'y_pos' => $y_pos, 'x_repeat' => $x_repeat, 'y_repeat' => $y_repeat, 'clippath' => '', 'resize' => $resize, 'opacity' => $opacity, 'itype' => $itype];
 										}
 									}
@@ -23658,9 +23658,9 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 						}
 					}
 
-					if (isset($cell['background-image']) && $paintcell) {
-						if (isset($cell['background-image']['gradient']) && $cell['background-image']['gradient'] && preg_match('/(-moz-)*(repeating-)*(linear|radial)-gradient/', $cell['background-image']['gradient'])) {
-							$g = $this->gradient->parseMozGradient($cell['background-image']['gradient']);
+					if (isset($cell['background-images']) && $paintcell) {
+						if (isset($cell['background-images']['gradient']) && $cell['background-images']['gradient'] && preg_match('/(-moz-)*(repeating-)*(linear|radial)-gradient/', $cell['background-images']['gradient'])) {
+							$g = $this->gradient->parseMozGradient($cell['background-images']['gradient']);
 							if ($g) {
 								if ($table['borders_separate']) {
 									$px = $x + ($table['border_spacing_H'] / 2);
@@ -23679,7 +23679,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 									$this->tableBackgrounds[$level * 9 + 7][] = ['gradient' => true, 'x' => $px, 'y' => $py, 'w' => $pw, 'h' => $ph, 'gradtype' => $g['type'], 'stops' => $g['stops'], 'colorspace' => $g['colorspace'], 'coords' => $g['coords'], 'extend' => $g['extend'], 'clippath' => ''];
 								}
 							}
-						} elseif (isset($cell['background-image']['image_id']) && $cell['background-image']['image_id']) { // Background pattern
+						} elseif (isset($cell['background-images']['image_id']) && $cell['background-images']['image_id']) { // Background pattern
 							$n = count($this->patterns) + 1;
 							if ($table['borders_separate']) {
 								$px = $x + ($table['border_spacing_H'] / 2);
@@ -23693,25 +23693,25 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 								$ph = $h;
 							}
 							if ($this->ColActive) {
-								list($orig_w, $orig_h, $x_repeat, $y_repeat) = $this->_resizeBackgroundImage($cell['background-image']['orig_w'], $cell['background-image']['orig_h'], $pw, $ph, $cell['background-image']['resize'], $cell['background-image']['x_repeat'], $cell['background-image']['y_repeat']);
-								$this->patterns[$n] = ['x' => $px, 'y' => $py, 'w' => $pw, 'h' => $ph, 'pgh' => $this->h, 'image_id' => $cell['background-image']['image_id'], 'orig_w' => $orig_w, 'orig_h' => $orig_h, 'x_pos' => $cell['background-image']['x_pos'], 'y_pos' => $cell['background-image']['y_pos'], 'x_repeat' => $x_repeat, 'y_repeat' => $y_repeat];
-								if ($cell['background-image']['opacity'] > 0 && $cell['background-image']['opacity'] < 1) {
-									$opac = $this->SetAlpha($cell['background-image']['opacity'], 'Normal', true);
+								list($orig_w, $orig_h, $x_repeat, $y_repeat) = $this->_resizeBackgroundImage($cell['background-images']['orig_w'], $cell['background-images']['orig_h'], $pw, $ph, $cell['background-images']['resize'], $cell['background-images']['x_repeat'], $cell['background-images']['y_repeat']);
+								$this->patterns[$n] = ['x' => $px, 'y' => $py, 'w' => $pw, 'h' => $ph, 'pgh' => $this->h, 'image_id' => $cell['background-images']['image_id'], 'orig_w' => $orig_w, 'orig_h' => $orig_h, 'x_pos' => $cell['background-images']['x_pos'], 'y_pos' => $cell['background-images']['y_pos'], 'x_repeat' => $x_repeat, 'y_repeat' => $y_repeat];
+								if ($cell['background-images']['opacity'] > 0 && $cell['background-images']['opacity'] < 1) {
+									$opac = $this->SetAlpha($cell['background-images']['opacity'], 'Normal', true);
 								} else {
 									$opac = '';
 								}
 								$this->_out(sprintf('q /Pattern cs /P%d scn %s %.3F %.3F %.3F %.3F re f Q', $n, $opac, $px * Mpdf::SCALE, ($this->h - $py) * Mpdf::SCALE, $pw * Mpdf::SCALE, -$ph * Mpdf::SCALE));
 							} else {
-								$image_id = $cell['background-image']['image_id'];
-								$orig_w = $cell['background-image']['orig_w'];
-								$orig_h = $cell['background-image']['orig_h'];
-								$x_pos = $cell['background-image']['x_pos'];
-								$y_pos = $cell['background-image']['y_pos'];
-								$x_repeat = $cell['background-image']['x_repeat'];
-								$y_repeat = $cell['background-image']['y_repeat'];
-								$resize = $cell['background-image']['resize'];
-								$opacity = $cell['background-image']['opacity'];
-								$itype = $cell['background-image']['itype'];
+								$image_id = $cell['background-images']['image_id'];
+								$orig_w = $cell['background-images']['orig_w'];
+								$orig_h = $cell['background-images']['orig_h'];
+								$x_pos = $cell['background-images']['x_pos'];
+								$y_pos = $cell['background-images']['y_pos'];
+								$x_repeat = $cell['background-images']['x_repeat'];
+								$y_repeat = $cell['background-images']['y_repeat'];
+								$resize = $cell['background-images']['resize'];
+								$opacity = $cell['background-images']['opacity'];
+								$itype = $cell['background-images']['itype'];
 								$this->tableBackgrounds[$level * 9 + 8][] = ['x' => $px, 'y' => $py, 'w' => $pw, 'h' => $ph, 'image_id' => $image_id, 'orig_w' => $orig_w, 'orig_h' => $orig_h, 'x_pos' => $x_pos, 'y_pos' => $y_pos, 'x_repeat' => $x_repeat, 'y_repeat' => $y_repeat, 'clippath' => '', 'resize' => $resize, 'opacity' => $opacity, 'itype' => $itype];
 							}
 						}
@@ -23769,7 +23769,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 						$tableheader[$i][$j]['va'] = $cell['va'];
 						$tableheader[$i][$j]['mih'] = $cell['mih'];
 						$tableheader[$i][$j]['gradient'] = (isset($cell['gradient']) ? $cell['gradient'] : null); // *BACKGROUNDS*
-						$tableheader[$i][$j]['background-image'] = (isset($cell['background-image']) ? $cell['background-image'] : null); // *BACKGROUNDS*
+						$tableheader[$i][$j]['background-images'] = (isset($cell['background-images']) ? $cell['background-images'] : null); // *BACKGROUNDS*
 						$tableheader[$i][$j]['rowspan'] = (isset($cell['rowspan']) ? $cell['rowspan'] : null);
 						$tableheader[$i][$j]['colspan'] = (isset($cell['colspan']) ? $cell['colspan'] : null);
 						$tableheader[$i][$j]['bgcolor'] = $cell['bgcolor'];
@@ -24219,23 +24219,23 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 				}
 			}
 
-			if (isset($table['background-image'])) {
-				if (isset($table['background-image']['gradient']) && $table['background-image']['gradient'] && preg_match('/(-moz-)*(repeating-)*(linear|radial)-gradient/', $table['background-image']['gradient'])) {
-					$g = $this->gradient->parseMozGradient($table['background-image']['gradient']);
+			if (isset($table['background-images'])) {
+				if (isset($table['background-images']['gradient']) && $table['background-images']['gradient'] && preg_match('/(-moz-)*(repeating-)*(linear|radial)-gradient/', $table['background-images']['gradient'])) {
+					$g = $this->gradient->parseMozGradient($table['background-images']['gradient']);
 					if ($g) {
 						$this->tableBackgrounds[$level * 9 + 1][] = ['gradient' => true, 'x' => $bx, 'y' => $by, 'w' => $bw, 'h' => $bh, 'gradtype' => $g['type'], 'stops' => $g['stops'], 'colorspace' => $g['colorspace'], 'coords' => $g['coords'], 'extend' => $g['extend'], 'clippath' => ''];
 					}
 				} else {
-					$image_id = $table['background-image']['image_id'];
-					$orig_w = $table['background-image']['orig_w'];
-					$orig_h = $table['background-image']['orig_h'];
-					$x_pos = $table['background-image']['x_pos'];
-					$y_pos = $table['background-image']['y_pos'];
-					$x_repeat = $table['background-image']['x_repeat'];
-					$y_repeat = $table['background-image']['y_repeat'];
-					$resize = $table['background-image']['resize'];
-					$opacity = $table['background-image']['opacity'];
-					$itype = $table['background-image']['itype'];
+					$image_id = $table['background-images']['image_id'];
+					$orig_w = $table['background-images']['orig_w'];
+					$orig_h = $table['background-images']['orig_h'];
+					$x_pos = $table['background-images']['x_pos'];
+					$y_pos = $table['background-images']['y_pos'];
+					$x_repeat = $table['background-images']['x_repeat'];
+					$y_repeat = $table['background-images']['y_repeat'];
+					$resize = $table['background-images']['resize'];
+					$opacity = $table['background-images']['opacity'];
+					$itype = $table['background-images']['itype'];
 					$this->tableBackgrounds[$level * 9 + 2][] = ['x' => $bx, 'y' => $by, 'w' => $bw, 'h' => $bh, 'image_id' => $image_id, 'orig_w' => $orig_w, 'orig_h' => $orig_h, 'x_pos' => $x_pos, 'y_pos' => $y_pos, 'x_repeat' => $x_repeat, 'y_repeat' => $y_repeat, 'clippath' => '', 'resize' => $resize, 'opacity' => $opacity, 'itype' => $itype];
 				}
 			}
@@ -27708,7 +27708,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 			'zwj' => '8205', 'lrm' => '8206', 'rlm' => '8207', 'ndash' => '8211', 'mdash' => '8212', 'lsquo' => '8216', 'rsquo' => '8217',
 			'sbquo' => '8218', 'ldquo' => '8220', 'rdquo' => '8221', 'bdquo' => '8222', 'dagger' => '8224', 'Dagger' => '8225', 'bull' => '8226',
 			'hellip' => '8230', 'permil' => '8240', 'prime' => '8242', 'Prime' => '8243', 'lsaquo' => '8249', 'rsaquo' => '8250', 'oline' => '8254',
-			'frasl' => '8260', 'euro' => '8364', 'image' => '8465', 'weierp' => '8472', 'real' => '8476', 'trade' => '8482', 'alefsym' => '8501',
+			'frasl' => '8260', 'euro' => '8364', 'images' => '8465', 'weierp' => '8472', 'real' => '8476', 'trade' => '8482', 'alefsym' => '8501',
 			'larr' => '8592', 'uarr' => '8593', 'rarr' => '8594', 'darr' => '8595', 'harr' => '8596', 'crarr' => '8629', 'lArr' => '8656',
 			'uArr' => '8657', 'rArr' => '8658', 'dArr' => '8659', 'hArr' => '8660', 'forall' => '8704', 'part' => '8706', 'exist' => '8707',
 			'empty' => '8709', 'nabla' => '8711', 'isin' => '8712', 'notin' => '8713', 'ni' => '8715', 'prod' => '8719', 'sum' => '8721',

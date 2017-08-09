@@ -2,12 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bcdef4c2-f372-4cd1-85f3-bb8f96031431" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Librairie-GD/index.php" afterPath="$PROJECT_DIR$/Librairie-GD/png.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/paragonie/random_compat/other/build_phar.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/paragonie/random_compat/other/build_phar.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Securite/mvc_no_secure/.htaccess" afterPath="$PROJECT_DIR$/Securite/mvc_no_secure/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php-fondamentaux/transmettre/get/jeu-3-couleurs.php/index.php" afterPath="$PROJECT_DIR$/php-fondamentaux/transmettre/get/jeu-3-couleurs.php/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php-fondamentaux/transmettre/post/matrice-lettre/index.php" afterPath="$PROJECT_DIR$/php-fondamentaux/transmettre/post/matrice-lettre/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/fzaninotto/faker/src/Faker/Generator.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/fzaninotto/faker/src/Faker/Generator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/fzaninotto/faker/src/Faker/Provider/File.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/fzaninotto/faker/src/Faker/Provider/File.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/fzaninotto/faker/src/Faker/Provider/Image.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/fzaninotto/faker/src/Faker/Provider/Image.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/fzaninotto/faker/src/Faker/Provider/fr_FR/Text.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/fzaninotto/faker/src/Faker/Provider/fr_FR/Text.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/fzaninotto/faker/test/Faker/Provider/ImageTest.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/fzaninotto/faker/test/Faker/Provider/ImageTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Config/ConfigVariables.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Config/ConfigVariables.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/CssManager.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/CssManager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Form.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Form.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Gradient.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Gradient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Image/Bmp.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Image/Bmp.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Image/ImageProcessor.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Image/ImageProcessor.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Image/Svg.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Image/Svg.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Image/Wmf.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Image/Wmf.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Mpdf.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Mpdf.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/QrCode/QrCode.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/QrCode/QrCode.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Tag.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Tag.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composer/PremierProjet/vendor/setasign/fpdi/fpdf_tpl.php" afterPath="$PROJECT_DIR$/Composer/PremierProjet/vendor/setasign/fpdi/fpdf_tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Librairie-GD/jpg.php" afterPath="$PROJECT_DIR$/Librairie-GD/jpg.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Librairie-GD/png.php" afterPath="$PROJECT_DIR$/Librairie-GD/png.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php-fondamentaux/accordion-photo/index.php" afterPath="$PROJECT_DIR$/php-fondamentaux/accordion-photo/index.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,13 +73,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="resize.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Librairie-GD/resize.php">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Librairie-GD/upload/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="177">
+              <caret line="43" column="57" lean-forward="false" selection-start-line="43" selection-start-column="57" selection-end-line="43" selection-end-column="57" />
               <folding>
                 <element signature="e#6#94#0#PHP" expanded="true" />
+                <element signature="n#style#0;n#input#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,7 +106,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/POO/interface/exemple2/AuthManager.php" />
         <option value="$PROJECT_DIR$/POO/interface/exemple2/index.php" />
         <option value="$PROJECT_DIR$/POO/traits/Convert.php" />
         <option value="$PROJECT_DIR$/POO/traits/Utile.php" />
@@ -142,6 +156,7 @@
         <option value="$PROJECT_DIR$/Librairie-GD/img&amp;txt.php" />
         <option value="$PROJECT_DIR$/Librairie-GD/filigrane.php" />
         <option value="$PROJECT_DIR$/Librairie-GD/resize.php" />
+        <option value="$PROJECT_DIR$/Librairie-GD/upload/index.php" />
       </list>
     </option>
   </component>
@@ -216,7 +231,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images-source" />
+              <option name="myItemId" value="upload" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -234,7 +249,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images-destination" />
+              <option name="myItemId" value="images-source" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -383,12 +398,12 @@
       <workItem from="1499763234931" duration="15705000" />
       <workItem from="1499843757320" duration="19521000" />
       <workItem from="1500207826755" duration="15000" />
-      <workItem from="1502282753587" duration="5110000" />
+      <workItem from="1502282753587" duration="7258000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73236000" />
+    <option name="totallyTimeSpent" value="75384000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -405,13 +420,13 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13472222" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2063306" sideWeight="0.26944444" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2063306" sideWeight="0.2736111" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14513889" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.4888889" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.4861111" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22508793" sideWeight="0.78402776" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2063306" sideWeight="0.73055553" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2063306" sideWeight="0.7263889" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39976552" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -434,23 +449,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="294">
-            <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="45" selection-end-column="16" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Composer/PremierProjet/vendor/mpdf/mpdf/src/Mpdf.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="9157" column="0" lean-forward="false" selection-start-line="9157" selection-start-column="0" selection-end-line="9157" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Composer/PremierProjet/composer.lock">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1268">
@@ -816,18 +814,34 @@
         <state relative-caret-position="924">
           <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
-            <element signature="e#6#94#0#PHP" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#6#94#0#PHP" expanded="false" />
+            <element signature="n#style#0;n#img#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Librairie-GD/images-destination/resize/montagne.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Librairie-GD/resize.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state relative-caret-position="455">
+          <caret line="32" column="37" lean-forward="true" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+          <folding>
+            <element signature="e#6#94#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Librairie-GD/upload/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="43" column="57" lean-forward="false" selection-start-line="43" selection-start-column="57" selection-end-line="43" selection-end-column="57" />
           <folding>
             <element signature="e#6#94#0#PHP" expanded="true" />
+            <element signature="n#style#0;n#input#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -6,6 +6,6 @@
  * Time: 15:01
  */
 
-header("Content-Type: image/jpeg");
+header("Content-Type: images/jpeg");
 $image = imagecreatefromjpeg("images-source/gilbert.jpeg");
 imagejpeg($image);

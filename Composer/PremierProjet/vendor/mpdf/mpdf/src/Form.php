@@ -1296,7 +1296,7 @@ class Form
 			}
 		}
 		if (!$info) {
-			throw new \Mpdf\MpdfException("Cannot find Button image");
+			throw new \Mpdf\MpdfException("Cannot find Button images");
 		}
 		$this->mpdf->_newobj();
 		$this->mpdf->_out('<<');
@@ -1486,7 +1486,7 @@ class Form
 		}
 
 		if ($form['subtype'] == 'js_button') {
-			// Icon / image
+			// Icon / images
 			if (isset($this->form_button_icon[$form['T']])) {
 				$cc++;
 				$temp .= '/TP ' . $this->form_button_icon[$form['T']]['pos'] . ' ';
