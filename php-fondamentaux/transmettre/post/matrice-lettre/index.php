@@ -37,7 +37,7 @@
       <nav>
         <?php
           for ($i=0; $i < 9; $i++) {
-            echo "<a href=\"index.php?id=$i\" class=",
+            echo "<a href=\"png.php?id=$i\" class=",
                   $id == $i ? 'a-hover' : '',
                   "><div>$neufLettres[$i]</div></a>";
           }

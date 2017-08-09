@@ -52,7 +52,7 @@
 
     <div class="container">
       <a href="index.php<?php if ($count != 2){echo '?result=1';}else{echo '?result=2';} ?>">Jouer</a>
-      <?php echo ($count == 2) ? "<a href='index.php?result=1' class=\"rejouer\">Rejouer</a>" : "" ; ?>
+      <?php echo ($count == 2) ? "<a href='png.php?result=1' class=\"rejouer\">Rejouer</a>" : "" ; ?>
     </div>
   </body>
 </html>
