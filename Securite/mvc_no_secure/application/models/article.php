@@ -28,7 +28,8 @@
         "
         SELECT
           A.id,
-          A.titre
+          A.titre,
+          U.pseudo
         FROM article AS A
         JOIN user AS U ON A.user_id = U.id
         AND U.id = $id
@@ -48,9 +49,12 @@
         SELECT
           A.id,
           A.titre,
-          A.contenu
+          A.contenu,
+          A.createdAt,
+          U.pseudo
         FROM article AS A
-        WHERE id = '$id'
+        JOIN user AS U ON A.user_id = U.id
+        WHERE A.id = $id
       ";
       $query = $this->pdo->query($sql);
       return $query->fetch(PDO::FETCH_OBJ);
@@ -94,13 +98,15 @@
       ]);
     }
 
-    public function delete($id) {
-      $sql =
-        "
-          DELETE FROM article
-          WHERE id = :id
-        ";
-      $query = $this->pdo->prepare($sql);
-      $query->execute([":id" => $id]);
+    public function delete($id, $token) {
+      if ($token == $_SESSION["auth"]["token"]) {
+        $sql =
+          "
+            DELETE FROM article
+            WHERE id = :id
+          ";
+        $query = $this->pdo->prepare($sql);
+        $query->execute([":id" => $id]);
+      }
     }
 	}

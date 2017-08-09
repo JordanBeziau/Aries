@@ -3,8 +3,12 @@
 <?php foreach($articles as $a): ?>
  <tr>
      <td><?= $a->titre ?></td>
+   <td><?php echo $a->pseudo; ?></td>
+   <td><a class="btn btn-info" href="<?php echo BASE_URL."/admin/show/".$a->id ?>">Show</a></td>
+   <?php if ($profil == 1) : ?>
      <td><a class="btn btn-info" href="<?php echo BASE_URL ?>/admin/edit/<?php echo $a->id ?>">Edit</a></td>
-     <td><a class="btn btn-danger" href="<?php echo BASE_URL."/admin/delete/".$a->id ?>">Delete</a></td>
+     <td><a class="btn btn-danger" href="<?php echo BASE_URL."/admin/delete/".$a->id."/".$_SESSION["auth"]["token"]; ?>">Delete</a></td>
+   <?php endif; ?>
  </tr>
 <?php endforeach; ?>
 </table>

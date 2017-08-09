@@ -3,13 +3,13 @@
 	//use app\md\User as User;
 	use \PDO;
 	use \core\Model;
+	use \auth\Auth;
 
 	class User extends Model {
 
 		public function getLogin(){
-
 		  $login = $_POST["inputlogin"];
-		  $password = $_POST["inputpwd"];
+		  $password = Auth::SALT.hash('sha512', $_POST["inputpwd"]);
 		  $sql =
       "
         SELECT pseudo, profil, id
@@ -25,7 +25,6 @@
 		  return $query->rowCount() > 0 ?
         $query->fetchAll(PDO::FETCH_OBJ) :
         false;
-
 		}
 
 	}

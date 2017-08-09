@@ -3,7 +3,8 @@
 	},
 	"autoload":{
 		"files":[
-			"core/helpers/debug.php"
+			"core/helpers/debug.php",
+			"core/helpers/flash.php"
 		],
 		"psr-4":{
 			"core\\":"core",

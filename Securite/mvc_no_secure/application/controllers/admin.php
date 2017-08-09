@@ -18,11 +18,28 @@
 		 */
     public function index(){
       $id = $_SESSION["auth"]["id"];
+      $profil = $_SESSION["auth"]["profil"];
+
+      if ($profil == 1) {
+        $articles = $this->modelArticle->all();
+      } else {
+        $articles = $this->modelArticle->allby($id);
+      }
       $this->data = [
-        "titre" => "Accueil Admin",
-        "articles" => $this->modelArticle->allBy($id)
+        "titre"     => "Accueil Admin",
+        "articles"  => $articles,
+        "profil"    => $profil,
       ];
       $this -> view("admin", "index_view", $this->data);
+    }
+
+    public function show($id) {
+      $article = $this->modelArticle->single($id);
+      $this->data = [
+        "titre" => $article->titre,
+        "article" => $article
+      ];
+      $this->view("admin", "post_view", $this->data);
     }
         
     /**

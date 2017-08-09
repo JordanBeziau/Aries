@@ -30,7 +30,8 @@
         $_SESSION["auth"] = [
           "pseudo"  => $user->getLogin()[0]->pseudo,
           "profil"  => $user->getLogin()[0]->profil,
-          "id"      => $user->getLogin()[0]->id
+          "id"      => $user->getLogin()[0]->id,
+          "token"   => sha1(uniqid().rand(1000, 2000))
         ];
         header("location:".BASE_URL."/admin");
       } else {

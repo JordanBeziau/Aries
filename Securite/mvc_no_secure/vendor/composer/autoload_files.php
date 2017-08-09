@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '6167837bc311cd2f848307265d896920' => $baseDir . '/core/helpers/debug.php',
+    'd8d30546831bc4b43bb093aaf12e0f08' => $baseDir . '/core/helpers/flash.php',
 );
