@@ -1,0 +1,11 @@
+BlogBundle\Entity\Article:
+    article_{1..15}:
+        titre: '<sentence(5)>'
+        contenu: '<realText(200)>'
+        createdAt: '<datetime()>'
+
+BlogBundle\Entity\Commentaire:
+    commentaires_{1..25}:
+        article: "@article_*"
+        contenu: '<realText(200)>'
+        createdAt: '<datetime()>'

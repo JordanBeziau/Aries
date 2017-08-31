@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+{% block body %}
+  <div class="container">
+    {% for message in app.flashes("success") %}
+      <div class="alert">
+        <span class="alert alert-success">
+          {{ message }}
+        </span>
+      </div>
+    {% endfor %}
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <p class="text-right"><a href="{{ path("create") }}" class="btn btn-primary">Nouvelle Todo</a></p>
+        <h1>Liste de chose à faire</h1>
+        <hr>
+      </div>
+    </div>
+    <table class="table table-striped">
+      <tr>
+        <th>Titre</th>
+        <th>Catégorie</th>
+        <th>Date de création</th>
+        <th class="text-center">Action</th>
+        <th></th>
+        <th></th>
+      </tr>
+      {% for todo in todolist %}
+        <tr>
+          <td>{{ todo.title }}</td>
+          <td>{{ todo.category.name }}</td>
+          <td>{{ todo.createdAt | date("d/m/Y") }}</td>
+          <td class="text-center"><a href="{{ path('show', {'id': todo.id}) }}" class="btn btn-success">👁 Show</a></td>
+          <td class="text-center"><a href="{{ path('edit', {'id': todo.id}) }}" class="btn btn-info">✏️ Edit</a></td>
+          <td class="text-center">
+            <form action="{{ path('remove') }}" method="post">
+              <input type="hidden" name="id" value="{{ todo.id }}">
+              <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+              <button class="btn btn-danger" type="submit">❌ Remove</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

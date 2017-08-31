@@ -1,0 +1,17 @@
+.navbar {
+  margin-bottom: 20px;
+  background: lightsalmon;
+  color: white;
+}
+.navbar a.navbar-brand {
+  color: white;
+}
+
+.container {
+  position: relative;
+}
+
+.line-height {
+  line-height: 3rem;
+  margin: 0;
+}

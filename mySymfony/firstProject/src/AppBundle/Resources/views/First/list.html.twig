@@ -1,0 +1,18 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block title %}
+  {{ parent() }} | List
+{% endblock %}
+{% block body %}
+  {% if names[number] %}
+    <h1>{{ names[number] }}</h1>
+  {% else %}
+    <h1>Pas de nom à cet index.</h1>
+  {% endif %}
+
+  <em>Noms disponibles : </em>
+  <ul>
+    {% for key, name in names %}
+      <li>{{ key }} - {{ name }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

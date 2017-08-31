@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+{% block body %}
+  <div class="container">
+    {% for article in articles %}
+      <h3>{{ article.titre }}</h3>
+      <p><span>{{ article.createdAt | date("d/m/Y") }}</span></p>
+      <p>{{ article.contenu }}</p>
+      <p><a href="{{ url('articleDetail', {'id': article.id}) }}">Voir plus >></a></p>
+      <hr>
+    {% endfor %}
+  </div>
+{% endblock %}

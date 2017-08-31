@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+{% block body %}
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        <h3>{{ article.titre }}</h3>
+        <p><span>{{ article.createdAt | date("d/m/Y") }}</span></p>
+        <p>{{ article.contenu }}</p>
+        <p><a href="{{ url('home') }}"><< back</a></p>
+      </div>
+    </div>
+    <div class="row">
+      <h3 class="col-12">Commentaires</h3>
+      <div class="col-8">
+        {% for comment in comments %}
+          <p>{{ comment.contenu }}</p>
+          <hr>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
