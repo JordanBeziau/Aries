@@ -15,7 +15,6 @@ class DefaultController extends Controller
     {
       $entityManager = $this->getDoctrine()->getManager();
       $books = $entityManager->getRepository(Livre::class)->findAll();
-      dump($books);
       return $this->render('WeeBundle:Default:index.html.twig',
         array(
           "books" => $books
