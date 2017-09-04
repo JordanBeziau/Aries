@@ -26,9 +26,11 @@ class LoaderUserData extends AbstractFixture implements OrderedFixtureInterface 
     return array(
       array(
         "username" => "admin@weebooks.fr",
+        "plainpassword" => "secret"
       ),
       array(
         "username" => "jack@weebooks.fr",
+        "plainpassword" => "topsecret"
       )
     );
   }

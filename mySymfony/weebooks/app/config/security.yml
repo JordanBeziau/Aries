@@ -33,3 +33,6 @@ security:
 
             logout:
                 path: /logout
+
+    encoders:
+        WeeBundle\Entity\User: bcrypt
