@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
+import Student from './Student'
+import {Button, Grid, Form} from 'semantic-ui-react'
 
 class App extends Component {
   state = {
-    current_student: {},
+    current_student: {
+      name: '',
+      age: 0,
+    },
     students: [],
-    color: 'red'
+    color: 'red',
   }
   
   handleChangeStudent = (attr, event) => {
@@ -20,7 +25,7 @@ class App extends Component {
     students.push(current_student)
     this.setState({
       students,
-      current_student: {name: '', age: ''}
+      current_student: {name: '', age: 0}
     })
   }
 
@@ -33,9 +38,11 @@ class App extends Component {
     const {color} = this.props
 
     return (
-      <div className="App">
+      <Grid container columns={1} centered stackable>
         <h1>SYSTÈME DE GESTION D'ÉTUDIANTS</h1>
-        <form>
+        <Form>
+        <Grid.Row>
+        <Grid.Column width={8}>
           <input 
             placeholder="Nom étudiant"
             onChange={(event) => this.handleChangeStudent('name', event)}
@@ -45,13 +52,15 @@ class App extends Component {
           <input
             placeholder="Âge de l'étudiant"
             onChange={(event) => this.handleChangeStudent('age', event)}
-            type="text"
+            type="number"
             value={current_student.age}
           />
+          </Grid.Column>
+          </Grid.Row>
           {
-            current_student.name && current_student.age && <button onClick={this.addStudent}>Ajouter l'étudiant</button>
+            current_student.name && current_student.age && <Button color="green" onClick={this.addStudent}>Ajouter l'étudiant</Button>
           }
-        </form>
+        </Form>
         {
           students
             .sort((a, b) => {
@@ -60,19 +69,20 @@ class App extends Component {
               return 0
             })
             .map((student, index) => {
-              return (
-                <p key={index} style={{color: color ? color : this.state.color}}>
-                  {student.name} - {student.age} ans
-                  <button 
-                  onClick={() => this.removeStudent(index)}
-                  className="close"
-                  >
-                  X</button>
-                </p>
+              return(
+                <Grid.Row>
+                  <Student 
+                    index={index}
+                    onRemove={this.removeStudent} 
+                    student={student} 
+                    id={index + student.name} 
+                  />
+                </Grid.Row>
               )
-            })
+            }
+            )
         }
-      </div>
+      </Grid>
     );
   }
 }
