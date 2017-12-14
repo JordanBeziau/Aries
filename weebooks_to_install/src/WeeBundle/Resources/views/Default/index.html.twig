@@ -1,0 +1,22 @@
+{% extends "WeeBundle::layout.html.twig" %}
+{% block body %}
+    <div class="container">
+        <div>
+            {% for livre in livres %}
+            <div class="col-4" style="margin-bottom: 20px;float: left;">
+                <div class="card">
+                    <img class="card-img-top" src="{{ asset('img/max/'~livre.imageName) }}">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ livre.titre }}</h4>
+                        <p class="card-text">
+                            <strong>{{ livre.auteur.prenom}} {{  livre.auteur.nom }}</strong><br>
+                            {{ livre.presentation| truncate(10, true) }}
+                        </p>
+                        <a href="#" class="btn btn-primary">détail</a>
+                    </div>
+                </div>
+            </div>
+            {%  endfor %}
+        </div>
+    </div>
+{% endblock %}

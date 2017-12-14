@@ -1,0 +1,20 @@
+{% extends "WeeBundle::layout.html.twig" %}
+
+{% block body %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div>
+        <h2 class="w-100">Modifier le livre</h2>
+        <hr>
+        {{ form_start(our_form) }}
+        {{ form_widget(our_form) }}
+        {{ form_end(our_form) }}
+        {% for message in app.flashes('success') %}
+          <div class="alert alert-success">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

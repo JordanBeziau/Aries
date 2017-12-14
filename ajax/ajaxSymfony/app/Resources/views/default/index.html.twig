@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="titre">
+            <h1>QCM sur Léonard de Vinci</h1>
+            <h1>question n° <span></span></h1>
+        </div>
+
+        <div class="qcm">
+            <h2></h2>
+            <i></i><p data-choix='1'></p>
+            <i></i><p data-choix='2'></p>
+            <i></i><p data-choix='3'></p>
+        </div>
+
+        <div class="boutons">
+            <button>valider<i class='fa fa-check'></i></button>
+            <button>suivant<i class='fa fa-arrow-right'></i></button>
+        </div>
+
+        <div class="reponse">
+            <h2></h2>
+            <p></p>
+        </div>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,30 @@
+{% extends "WeeBundle::layout.html.twig" %}
+
+{% block body %}
+  <div class="container">
+    <table class="table table-striped">
+      <a href="{{ path('create') }}" class="btn btn-primary">Nouveau livre</a>
+      <tr>
+        <th>Titre</th>
+        <th>Auteur</th>
+        <th>Actions</th>
+        <th></th>
+        <th></th>
+      </tr>
+      {% for livre in livres %}
+        <tr>
+          <td>{{ livre.titre }}</td>
+          <td>{{ livre.auteur.nom }}</td>
+          <td><a href="{{ path('edit', { 'id' : livre.id }) }}" class="btn btn-info">Edit</a></td>
+          <td>
+            <form action="{{ path('delete') }}" method="post">
+              <input type="hidden" name="id" value="{{ livre.id }}">
+              <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+              <button type="submit" class="btn btn-danger">Remove</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

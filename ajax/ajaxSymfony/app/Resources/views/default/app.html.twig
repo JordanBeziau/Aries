@@ -1,0 +1,17 @@
+<script defer>
+  $.getJSON('{{ path('count_qcm') }}', function (r) {
+    const numero = 1
+    const nb_question = r
+    getQCM(numero, nb_question)
+  })
+
+  function getQCM(numero, nb_question) {
+    $('.titre span').text(`${numero}/${nb_question}`)
+    $.post('{{ path('current_qcm') }}', {'numero':numero}, function (r) {
+      $('.qcm h2').text(r.question)
+      <$('.qcm p').eq(0).text(r.choix1)
+      $('.qcm p').eq(1).text(r.choix2)
+      $('.qcm p').eq(2).text(r.choix3)
+    }, 'json')
+  }
+</script>

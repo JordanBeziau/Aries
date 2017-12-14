@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Wee Layout - {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {# styles particuliers #}
+{% endblock %}
+
+{% block navtop %}
+{% include("WeeBundle::navbar.html.twig") %}
+{% endblock %}
+
+{% block body %}
+    <h2>Test Titre dans Layout</h2>
+    {# bloc, que les vues du bundle pourront remplir #}
+    {% block wee_body %}
+    {% endblock %}
+
+{% endblock %}

@@ -1,0 +1,56 @@
+* { margin: 0;padding:0 ; }
+
+body { font-family: arial; }
+
+.container { width: 800px; margin:0 auto; }
+
+/*----------------------------------------------------------------
+    Section titre
+*/
+
+.titre { font-size: 0;}
+.titre > * {
+    display: inline-block;
+    font-size: 2rem; font-weight: normal;
+    height: 80px;line-height: 80px;
+}
+.titre >:nth-child(1) { width: 70%; }
+.titre >:nth-child(2) { width: 30%; text-align: right;}
+
+/*----------------------------------------------------------------
+    Section qcm
+*/
+
+.qcm { width: 100%; }
+.qcm h2 {font-weight: normal; height: 80px;line-height: 80px; }
+.qcm i, .qcm p{
+    display: inline-block; vertical-align: top;
+    height: 30px; line-height:30px; font-size: 1.1rem;
+}
+.qcm i { width: 10%; text-align: center;}
+.qcm p{ width: 80%; cursor: pointer; }
+
+
+/*-----------------------------------------------------------------
+    Boutons valider et suivant
+*/
+
+.boutons { height: 100px;line-height: 80px; text-align: right; }
+.boutons button{
+    background:none; margin: 0 5px; padding: 10px; border:1px solid black;
+    display: inline-block; border-radius: 5px; font-size: .85rem;
+    opacity: 0.5; outline: none;
+}
+.boutons button.actif{ opacity: 1;cursor: pointer; background: #d5ddd4; }
+.boutons button i { padding-left: 5px; }
+
+
+/*----------------------------------------------------------------
+    Réponse titre + paragraphe
+*/
+
+.reponse h2 {font-weight: 300;font-size: 1.3rem; margin-bottom: 10px; }
+.reponse h2 i { margin-right: 10px; }
+
+.ok{ color:#4ddd74 ; }
+.nok{ color:#ef4739;}
