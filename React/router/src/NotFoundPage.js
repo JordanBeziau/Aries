@@ -1,13 +1,16 @@
-import React, {Component} from 'react'
+import React, { Component } from "react";
+import { Grid } from "semantic-ui-react";
 
 class notFoundPage extends Component {
-  render () {
+  render() {
     return (
-      <div>
-        <h1>NOT FOUND PAGE</h1>
-      </div>
-    )
+      <Grid>
+        <Grid.Column>
+          <h1 style={{ textAlign: "center" }}>NOT FOUND PAGE</h1>
+        </Grid.Column>
+      </Grid>
+    );
   }
 }
 
-export default notFoundPage
+export default notFoundPage;

@@ -22,7 +22,7 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Welcome to React-Router</h1>
+              <h1 className="App-title">Welcome to react-router-dom</h1>
               <Grid centered>
                 <Grid.Row>
                   <Menu>
