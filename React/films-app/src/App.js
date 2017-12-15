@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Grid} from 'semantic-ui-react'
 import './App.css'
-import Film from './Film'
+import Slider from './Slider'
 
 
 class App extends Component {
@@ -22,34 +22,16 @@ class App extends Component {
         description: 'Welcome to the jungle !',
         img: 'jungle.jpg'
       }
-    ],
-    activeFrame: 0
-  }
-
-  changeFrame = () => {
-    setInterval(() => {
-      this.setState(
-        {
-          activeFrame : 
-            this.state.activeFrame === this.state.films.length - 1
-              ? 0
-              : this.state.activeFrame + 1
-        }
-      )
-    }, 4000)
-  }
-
-  componentDidMount = () => {
-    this.changeFrame()
+    ]
   }
 
   render() {
     return (
       <div className='App'>
         {
-          <Film 
-            content={this.state.films[this.state.activeFrame]} 
-            index={this.state.activeFrame} 
+          <Slider
+            slides={this.state.films} 
+            timer="4000"
           />
         }
       </div>
