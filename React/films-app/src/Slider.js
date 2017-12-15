@@ -23,11 +23,16 @@ class Slider extends Component {
   }
 
   render() {
+    const {slides} = this.props
+    const {activeSlide} = this.state
     return (
-      <div className='full-container' style={{background: `url(${this.props.slides[this.state.activeSlide].img}) no-repeat center center`}}>
+      <div 
+        className='full-container'
+        style={{background: `url(${slides[activeSlide].img}) no-repeat center center`}}
+      >
         <div>
-          <h1>{this.props.slides[this.state.activeSlide].name}</h1>
-          <h2>{this.props.slides[[this.state.activeSlide]].description}</h2>
+          <h1>{slides[activeSlide].name}</h1>
+          <h2>{slides[activeSlide].description}</h2>
         </div>
       </div>
     )
