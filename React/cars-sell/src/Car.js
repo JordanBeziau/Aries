@@ -23,7 +23,13 @@ class Car extends Component {
             onClick={() => this.handleSold(this.props.index)} 
             color={this.props.content.sold ? 'red' : 'teal'}
             disabled={this.props.content.sold ? true : false}
-          >Acheter !</Button>
+          >
+          {
+            this.props.content.sold ?
+              'Vendu !' :
+              'Acheter !'
+          }
+          </Button>
         </Card.Content>
       </Card>
     )
