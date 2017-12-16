@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Statistic, Grid } from "semantic-ui-react";
-import GridColumn from "semantic-ui-react/dist/commonjs/collections/Grid/GridColumn";
 
 class App extends Component {
   state = {
