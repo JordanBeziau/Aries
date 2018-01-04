@@ -26,6 +26,16 @@ export class Landing extends Component {
     });
   };
 
+  remove_page = page_id => {
+    Meteor.call("dynamic_pages.remove", page_id, (err, res) => {
+      if (err) {
+        alert("Erreur de suppression : " + error);
+      } else {
+        console.log("Page supprimée");
+      }
+    });
+  };
+
   render() {
     const { title, description } = this.state;
     const { loading, dynamic_pages } = this.props;
@@ -54,6 +64,9 @@ export class Landing extends Component {
             return (
               <p key={page._id}>
                 {page.title} - {page.description}
+                <button onClick={() => this.remove_page(page._id)}>
+                  Remove
+                </button>
               </p>
             );
           })}
