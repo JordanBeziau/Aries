@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Landing from "/imports/pages/general/Landing";
-import NotFound from "/imports/pages/general/NotFound";
+import AdminLayout from "/imports/layouts/AdminLayout";
+import MainLayout from "/imports/layouts/MainLayout";
 
 export default class extends Component {
   render() {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route path="*" component={NotFound} />
+          <Route path="/admin" component={AdminLayout} />
+          <Route path="*" component={MainLayout} />
         </Switch>
       </Router>
     );
