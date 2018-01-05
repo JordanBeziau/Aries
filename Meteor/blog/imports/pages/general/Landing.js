@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withTracker } from "meteor/react-meteor-data";
 import { DynamicPages } from "/imports/api/dynamic_pages/dynamic_pages";
 import SignUpForm from "/imports/components/accounts/SignUpForm";
+import SignInForm from "/imports/components/accounts/SignInForm";
 
 import {
   Grid,
@@ -52,9 +53,13 @@ export class Landing extends Component {
     });
   };
 
+  on_user_connected = () => {
+    console.log("Vous êtes maintenant connecté !");
+  };
+
   render() {
     const { title, description } = this.state;
-    const { loading, dynamic_pages } = this.props;
+    const { loading, dynamic_pages, user } = this.props;
     if (loading) {
       return (
         <Dimmer active inverted>
@@ -83,26 +88,34 @@ export class Landing extends Component {
             </Form>
           </Grid.Column>
           <Grid.Column width={8}>
-            {dynamic_pages.map(page => {
-              return (
-                <Card key={page._id}>
-                  <Button
-                    floated="right"
-                    onClick={() => this.remove_page(page._id)}
-                  >
-                    X
-                  </Button>
-                  <Card.Content>
-                    <Card.Header>{page.title}</Card.Header>
-                    <Card.Description>{page.description}</Card.Description>
-                  </Card.Content>
-                </Card>
-              );
-            })}
+            <Grid>
+              {dynamic_pages.map(page => {
+                return (
+                  <Grid.Column width={8}>
+                    <Card key={page._id} floated="right">
+                      <Button onClick={() => this.remove_page(page._id)}>
+                        X
+                      </Button>
+                      <Card.Content>
+                        <Card.Header>{page.title}</Card.Header>
+                        <Card.Description>{page.description}</Card.Description>
+                      </Card.Content>
+                    </Card>
+                  </Grid.Column>
+                );
+              })}
+            </Grid>
           </Grid.Column>
-          <Grid.Column width={16}>
-            <SignUpForm />
-          </Grid.Column>
+          {!user && (
+            <Grid.Column width={8}>
+              <SignUpForm />
+            </Grid.Column>
+          )}
+          {!user && (
+            <Grid.Column width={8}>
+              <SignInForm onSignedIn={this.on_user_connected} />
+            </Grid.Column>
+          )}
         </Grid>
       );
     }
@@ -114,8 +127,10 @@ export default (LandingContainer = withTracker(() => {
   const dynamicPagesPublication = Meteor.subscribe("dynamic_pages.all");
   const loading = !dynamicPagesPublication.ready();
   const dynamic_pages = DynamicPages.find({}).fetch();
+  const user = Meteor.user();
   return {
     loading,
-    dynamic_pages
+    dynamic_pages,
+    user
   };
 }))(Landing);

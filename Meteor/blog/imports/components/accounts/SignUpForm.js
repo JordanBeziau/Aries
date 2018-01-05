@@ -15,7 +15,18 @@ export default class extends Component {
   submitForm = event => {
     event.preventDefault();
     Meteor.call("accounts.signup", this.state, (err, res) => {
-      if (err) alert("Erreur lors de l'inscription :" + err);
+      if (err) {
+        alert("Erreur lors de l'inscription :" + err);
+      } else {
+        Meteor.loginWithPassword(
+          this.state.email,
+          this.state.password,
+          (err, res) => {
+            if (err) console.log("Erreur de connexion : " + err);
+            else console.log("Vous êtes bien connecté !");
+          }
+        );
+      }
     });
   };
 

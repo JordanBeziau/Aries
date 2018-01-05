@@ -14,7 +14,7 @@ export default class extends Component {
         <Grid.Column width={16}>
           <Navbar />
         </Grid.Column>
-        <Grid.Column width={16} padded="horizontaly">
+        <Grid.Column width={16}>
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route path="*" component={NotFound} />
