@@ -7,6 +7,13 @@ import AdminPages from "/imports/pages/admin/AdminPages";
 import Navbar from "/imports/components/navigation/Navbar";
 
 export default class extends Component {
+  componentWillMount = () => {
+    if (!Roles.userIsInRole(Meteor.userId(), "admin")) {
+      alert("Vous n'avez pas les droits");
+      this.props.history.push("/");
+    }
+  };
+
   render() {
     return (
       <Grid stackable>
