@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withTracker } from "meteor/react-meteor-data";
 import { DynamicPages } from "/imports/api/dynamic_pages/dynamic_pages";
+import SignUpForm from "/imports/components/accounts/SignUpForm";
 
 import {
   Grid,
@@ -11,7 +12,9 @@ import {
   Input,
   Button,
   Dimmer,
-  Segment
+  Segment,
+  Card,
+  Icon
 } from "semantic-ui-react";
 import GridColumn from "semantic-ui-react/dist/commonjs/collections/Grid/GridColumn";
 
@@ -54,11 +57,9 @@ export class Landing extends Component {
     const { loading, dynamic_pages } = this.props;
     if (loading) {
       return (
-        <Segment>
-          <Dimmer active inverted>
-            <Loader>Loading</Loader>
-          </Dimmer>
-        </Segment>
+        <Dimmer active inverted>
+          <Loader>Loading</Loader>
+        </Dimmer>
       );
     } else {
       return (
@@ -84,14 +85,23 @@ export class Landing extends Component {
           <Grid.Column width={8}>
             {dynamic_pages.map(page => {
               return (
-                <p key={page._id}>
-                  {page.title} - {page.description}
-                  <Button onClick={() => this.remove_page(page._id)}>
-                    Remove
+                <Card key={page._id}>
+                  <Button
+                    floated="right"
+                    onClick={() => this.remove_page(page._id)}
+                  >
+                    X
                   </Button>
-                </p>
+                  <Card.Content>
+                    <Card.Header>{page.title}</Card.Header>
+                    <Card.Description>{page.description}</Card.Description>
+                  </Card.Content>
+                </Card>
               );
             })}
+          </Grid.Column>
+          <Grid.Column width={16}>
+            <SignUpForm />
           </Grid.Column>
         </Grid>
       );
