@@ -91,8 +91,8 @@ export class Landing extends Component {
             <Grid>
               {dynamic_pages.map(page => {
                 return (
-                  <Grid.Column width={8}>
-                    <Card key={page._id} floated="right">
+                  <Grid.Column key={page._id} width={8}>
+                    <Card floated="right">
                       <Button onClick={() => this.remove_page(page._id)}>
                         X
                       </Button>

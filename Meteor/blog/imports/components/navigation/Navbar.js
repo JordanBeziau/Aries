@@ -1,10 +1,15 @@
 import React, { Component } from "react";
-import { Menu } from "semantic-ui-react";
+import { Menu, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { withTracker } from "meteor/react-meteor-data";
 
-export default class extends Component {
+export class Navbar extends Component {
+  logout = () => {
+    Meteor.logout();
+  };
+
   render() {
-    const { admin } = this.props;
+    const { admin, user } = this.props;
     return (
       <Menu borderless color={admin && "orange"} inverted attached>
         {admin && <Menu.Item>ADMIN</Menu.Item>}
@@ -14,7 +19,31 @@ export default class extends Component {
         <Link to="/admin/pages">
           <Menu.Item>Admin pages</Menu.Item>
         </Link>
+        <Menu.Menu position="right">
+          {user ? (
+            [
+              <Menu.Item key="1">
+                <Icon name="user" />
+                {user.username}
+              </Menu.Item>,
+              <Menu.Item key="2" onClick={this.logout}>
+                Déconnexion
+              </Menu.Item>
+            ]
+          ) : (
+            <Link to="/signin">
+              <Menu.Item>Connexion / Inscription</Menu.Item>
+            </Link>
+          )}
+        </Menu.Menu>
       </Menu>
     );
   }
 }
+
+export default (NavbarContainer = withTracker(() => {
+  const user = Meteor.user();
+  return {
+    user
+  };
+}))(Navbar);

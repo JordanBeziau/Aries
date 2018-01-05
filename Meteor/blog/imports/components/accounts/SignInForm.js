@@ -18,7 +18,7 @@ class SignInForm extends Component {
       this.state.password,
       (err, res) => {
         if (err) console.log("Erreur de connexion : " + err);
-        else this.props.onSignedIn;
+        else this.props.onSignedIn();
       }
     );
   };
