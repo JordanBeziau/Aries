@@ -7,7 +7,8 @@ const DynamicPagesSchema = new SimpleSchema({
     type: String
   },
   description: {
-    type: String
+    type: String,
+    optional: true
   },
   active: {
     type: Boolean,

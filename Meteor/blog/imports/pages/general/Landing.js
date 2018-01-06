@@ -59,29 +59,12 @@ export class Landing extends Component {
     } else {
       return (
         <Grid stackable>
-          <Grid.Column width={8}>
+          <Grid.Column width={16}>
             <Header>Mon Blog</Header>
-            <Form onSubmit={this.create_page}>
-              <Input
-                type="text"
-                value={title}
-                onChange={e => this.handleChange("title", e)}
-                placeholder="Title"
-              />
-              <Input
-                type="text"
-                value={description}
-                onChange={e => this.handleChange("description", e)}
-                placeholder="Description"
-              />
-              <Button>Créer une page</Button>
-            </Form>
-          </Grid.Column>
-          <Grid.Column width={8}>
             <Grid>
               {dynamic_pages.map(page => {
                 return (
-                  <Grid.Column key={page._id} width={8}>
+                  <Grid.Column key={page._id} width={4}>
                     <Card>
                       <Card.Content>
                         <Card.Header>{page.title}</Card.Header>

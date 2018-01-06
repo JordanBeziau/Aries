@@ -6,6 +6,7 @@ import { withTracker } from "meteor/react-meteor-data";
 export class Navbar extends Component {
   logout = () => {
     Meteor.logout();
+    if (this.props.forceUpdate) this.props.forceUpdate(false);
   };
 
   render() {
