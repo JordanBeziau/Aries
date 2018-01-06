@@ -43,16 +43,6 @@ export class Landing extends Component {
     });
   };
 
-  remove_page = page_id => {
-    Meteor.call("dynamic_pages.remove", page_id, (err, res) => {
-      if (err) {
-        alert("Erreur de suppression : " + error);
-      } else {
-        console.log("Page supprimée");
-      }
-    });
-  };
-
   on_user_connected = () => {
     console.log("Vous êtes maintenant connecté !");
   };
@@ -92,10 +82,7 @@ export class Landing extends Component {
               {dynamic_pages.map(page => {
                 return (
                   <Grid.Column key={page._id} width={8}>
-                    <Card floated="right">
-                      <Button onClick={() => this.remove_page(page._id)}>
-                        X
-                      </Button>
+                    <Card>
                       <Card.Content>
                         <Card.Header>{page.title}</Card.Header>
                         <Card.Description>{page.description}</Card.Description>
@@ -106,16 +93,6 @@ export class Landing extends Component {
               })}
             </Grid>
           </Grid.Column>
-          {!user && (
-            <Grid.Column width={8}>
-              <SignUpForm />
-            </Grid.Column>
-          )}
-          {!user && (
-            <Grid.Column width={8}>
-              <SignInForm onSignedIn={this.on_user_connected} />
-            </Grid.Column>
-          )}
         </Grid>
       );
     }
